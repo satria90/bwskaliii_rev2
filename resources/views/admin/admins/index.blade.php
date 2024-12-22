@@ -74,7 +74,7 @@
                 </li>
             </ul>
             
-            <ul class="ml-auto flex items-center">
+           <ul class="ml-auto flex items-center">
                 <li class="mr-2">
                     <button type="button">
                         <a href="{{ route('profile.edit') }}">
@@ -91,7 +91,7 @@
         </div>
         <div class="px-6 py-2">
             <div class="bg-white rounded-md border border-gray-100 shadow-black/5 p-6">
-                <a href="{{ route('admin.admins.create') }}" class="font-medium text-center w-40 h-10 mt-1 px-3 py-2 bg-blue-700 border shadow-sm border-blue-800 block rounded-md sm:text-sm text-white hover:bg-blue-900 hover:text-white">
+                <a href="{{ route('admin.admins.create') }}" class="font-medium text-center w-40 h-10 mb-4 px-3 py-2 bg-blue-700 border shadow-sm border-blue-800 block rounded-md sm:text-sm text-white hover:bg-blue-900 hover:text-white">
                 Tambah Admin
                 </a>
                 <!--Pagination -->
