@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="{{ asset('dist\css/style.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
     <title>Dashboard</title>
+    @vite('resources/css/app.css')
 </head>
 <body class="text-gray-800 font-poppins bg-gray-100">
     
@@ -73,19 +74,10 @@
             
             
             <ul class="ml-auto flex items-center">
-                <li class="mr-1">
-                    <form action="" class="p-4">
-                        <div class="relative w-full">
-                            <input type="text" for="cari" placeholder="Search..." class="py-2 pr-4 pl-10 bg-gray-50 w-full outline-none border border-gray-100 rounded-md text-sm focus:border-blue-700" />
-                            <i for="cari" class="ri-search-line absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500"></i>
-                        </div>
-                    </form>
-                </li>
-                {{-- profile --}}
                 <li class="mr-2">
                     <button type="button">
                         <a href="{{ route('profile.edit') }}">
-                            <img src="{{ Storage::url(Auth::user()->avatar) }}" class="w-8 h-8 rounded block object-cover align-middle">
+                            <img src="{{ Storage::url(Auth::user()->avatar) }}" class="w-11 h-11 rounded-full block object-cover align-middle">
                         </a>
                     </button>
                 </li>
@@ -102,7 +94,61 @@
             <div class="bg-white rounded-md border border-gray-100 shadow-md">
                 <!-- Title Section -->
                 <div class="bg-blue-700 text-white p-4 rounded-b-md">
-                    <h2 class="text-xl font-bold">Profil Pengguna</h2>
+                    <h2 class="text-xl font-bold">Profil Data Diri</h2>
+                </div>
+    
+                <!-- Body Section -->
+                <div class="p-6">
+                    <table class="table-auto w-full  ">
+                        <tbody>
+                            <!-- Baris 1 -->
+                            <tr class="">
+                                <td class=" px-4 py-2 font-semibold text-gray-700">Nama Lengkap</td>
+                                <td class=" px-4 py-2 text-gray-600">{{ $approval->user->fullName }}</td>
+                            </tr>
+
+                            <tr>
+                                <td class="px-4 py-2 font-semibold text-gray-700">Foto Profil</td>
+                                <td class="px-4 py-2 text-gray-600">
+                                    <a href="{{ Storage::url($approval->user->avatar) }}" target="_blank" class="text-blue-500 hover:underline">
+                                        Lihat File
+                                    </a>
+                                </td>
+                            </tr>
+
+
+                            <tr class="">
+                                <td class=" px-4 py-2 font-semibold text-gray-700">Alamat</td>
+                                <td class=" px-4 py-2 text-gray-600">{{ $approval->user->homeAddress }}</td>
+                            </tr>
+                            <!-- Baris 2 -->
+                            <tr class="bg-white">
+                                <td class=" px-4 py-2 font-semibold text-gray-700">Pekerjaan</td>
+                                <td class=" px-4 py-2 text-gray-600">{{ $approval->user->occupation }}</td>
+                            </tr>
+
+                            <tr class="bg-white">
+                                <td class=" px-4 py-2 font-semibold text-gray-700">Nama Perusahaan</td>
+                                <td class=" px-4 py-2 text-gray-600">{{ $approval->user->companyName }}</td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td class=" px-4 py-2 font-semibold text-gray-700">Alamat Perusahaan</td>
+                                <td class=" px-4 py-2 text-gray-600">{{ $approval->user->companyAddress }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- Footer Section -->
+                <div class="bg-gray-100 p-4 rounded-b-md">
+                    <hr class="my-5">
+
+                </div>
+            </div>
+            <div class="bg-white rounded-md border border-gray-100 shadow-md">
+                <!-- Title Section -->
+                <div class="bg-blue-700 text-white p-4 rounded-b-md">
+                    <h2 class="text-xl font-bold">Profil Data ID</h2>
                 </div>
     
                 <!-- Body Section -->
@@ -117,7 +163,7 @@
 
                             <tr class="">
                                 <td class=" px-4 py-2 font-semibold text-gray-700">Nama Lengkap</td>
-                                <td class=" px-4 py-2 text-gray-600">{{ $approval->user->fullName }}</td>
+                                <td class=" px-4 py-2 text-gray-600">{{ $approval->user->name }}</td>
                             </tr>
                             <!-- Baris 2 -->
                             <tr class="bg-white">
@@ -130,10 +176,12 @@
                                 <td class=" px-4 py-2 text-gray-600">{{ $approval->user->phoneNumber }}</td>
                             </tr>
                             <!-- Baris 3 -->
-                            <tr >
-                                <td class=" px-4 py-2 font-semibold text-gray-700">Kartu Identitas (KTP)</td>
-                                <td class=" px-4 py-2 text-gray-600">
-                                    <img src="{{ Storage::url($approval->proof) }}" alt="Proof Image" class="w-40 h-25 rounded object-cover">
+                            <tr>
+                                <td class="px-4 py-2 font-semibold text-gray-700">Kartu Identitas (KTP)</td>
+                                <td class="px-4 py-2 text-gray-600">
+                                    <a href="{{ Storage::url($approval->proof) }}" target="_blank" class="text-blue-500 hover:underline">
+                                        Lihat File
+                                    </a>
                                 </td>
                             </tr>
                             <!-- Baris 4 -->

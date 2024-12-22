@@ -10,27 +10,44 @@ use Spatie\Permission\Traits\HasRoles;
 
 class DataRequest extends Model
 {
-    //
     use HasFactory, SoftDeletes, HasRoles;
 
-    protected $fillable =[
-        'user_id',  
-        'Rainfall',
-        'RiverProfile', 
-        'Topography', 
-        'StudyResearch', 
-        'WaterAllocation', 
-        'otherCheckbox',
-        'requiredInformation', 
-        'ForResearch', 
-        'ForStudyProject', 
-        'otherPurpose',
-        'Status', 
+    protected $fillable = [
+        'user_id',
+        'survey_id',
         'fileDataRequest',
-        'is_Proof' 
+        'fileDataPerizinan',
+        'fileDataRekomtek',
+        'fileDataSda',
+        'fileDataPeminjaman',
+        'fileDataPengaduan',
+        'UnoperatedPermission',
+        'OperatedPermission',
+        'RiverDiversion',
+        'WaterAvailability',
+        'MinerC',
+        'RainFall',
+        'WaterHeight',
+        'Climatology',
+        'WaterQuality',
+        'WaterBalance',
+        'RiverNetwork',
+        'WaterDischarge',
+        'WatershedMap',
+        'Tools',
+        'PumpsEquipment',
+        'Information',
+        'requiredInformation',
+        'ForResearch',
+        'ForStudyProject',
+        'otherPurpose',
+        'Status',
+        'is_Proof',
     ];
 
-    public function user(){
+
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 

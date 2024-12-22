@@ -7,6 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
     <title>Dashboard</title>
+    @vite('resources/css/app.css')
 </head>
 <body class="text-gray-800 font-poppins bg-gray-100">
     
@@ -34,7 +35,7 @@
                 </a>
             </li>
             <li class="font-poppins mb-1 group">
-                <a href={{ route('register') }} class="flex items-center px-2 py-2 text-gray-400 hover:bg-gray-300 hover:text-blue-800 rounded-full group-[.active]:text-gray-300 ">
+                <a href="{{ route('admin.approvals.index') }}" class="flex items-center px-2 py-2 text-gray-400 hover:bg-gray-300 hover:text-blue-800 rounded-full group-[.active]:text-gray-300 ">
                     <i class="ri-team-line mr-3 text-lg"></i>
                     <span>Manajemen Akun</span>
                 </a>
@@ -72,42 +73,10 @@
                 </li>
             </ul>
             <ul class="ml-auto flex items-center">
-                <li class="mr-1">
-                    <form action="" class="p-4">
-                        <div class="relative w-full">
-                            <input type="text" for="cari" placeholder="Search..." class="py-2 pr-4 pl-10 bg-gray-50 w-full outline-none border border-gray-100 rounded-md text-sm focus:border-blue-700" />
-                            <i for="cari" class="ri-search-line absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500"></i>
-                        </div>
-                    </form>
-                </li>
-                <li class="dropdown mr-2">
-                    <button type="button" class="dropdown-toggle text-gray-400 w-8 h-8 rounded flex items-center justify-center hover:bg-gray-50 hover:text-gray-600">
-                        <i class="ri-notification-3-line"></i>
-                    </button>
-                    <div class="dropdown-menu shadow-md shadow-black/5 z-30 hidden max-w-xs w-full bg-white rounded-md border border-gray-100">
-                        <div class="flex items-center px-4 pt-4 border-b border-b-gray-100 notification-tab">
-                            <button type="button" data-tab="notification" data-tab-page="notifications" class="text-gray-400 font-medium text-[13px] hover:text-gray-600 border-b-2 border-b-transparent mr-4 pb-1 active">Notifikasi</button>
-                        </div>
-
-                        <div class="my-2">
-                            <ul class="max-h-64 overflow-y-auto" data-tab-for="notification" data-page="notifications">
-                                <li>
-                                    <a href="#" class="py-2 px-4 flex items-center hover:bg-gray-50 group">
-                                        <img src="https://placehold.co/32x32" alt="" class="w-8 h-8 rounded block object-cover align-middle">
-                                        <div class="ml-2">
-                                            <div class="text-[13px] text-gray-600 font-medium truncate group-hover:text-blue-500">New order</div>
-                                            <div class="text-[11px] text-gray-400">from a user</div>
-                                        </div>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </li>
                 <li class="mr-2">
                     <button type="button">
                         <a href="{{ route('profile.edit') }}">
-                            <img src="{{ Storage::url(Auth::user()->avatar) }}" class="w-8 h-8 rounded block object-cover align-middle">
+                            <img src="{{ Storage::url(Auth::user()->avatar) }}" class="w-11 h-11 rounded-full block object-cover align-middle">
                         </a>
                     </button>
                 </li>

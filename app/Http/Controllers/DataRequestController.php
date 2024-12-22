@@ -48,6 +48,31 @@ class DataRequestController extends Controller
                 $validated['Status'] = 'diproses'; // Menetapkan nilai default
             }
 
+            if($request->hasFile('fileDataPerizinan')){
+                $fileDataPerizinanPath = $request->file('fileDataPerizinan')->store('fileDataPerizinan','public');
+                $validated['fileDataPerizinan'] = $fileDataPerizinanPath;
+            }
+
+            if($request->hasFile('fileDataRekomtek')){
+                $fileDataRekomtekPath = $request->file('fileDataRekomtek')->store('fileDataRekomtek','public');
+                $validated['fileDataRekomtek'] = $fileDataRekomtekPath;
+            }
+
+            if($request->hasFile('fileDataSda')){
+                $fileDataSdaPath = $request->file('fileDataSda')->store('fileDataSda','public');
+                $validated['fileDataSda'] = $fileDataSdaPath;
+            }
+
+            if($request->hasFile('fileDataPeminjaman')){
+                $fileDataPeminjamanPath = $request->file('fileDataPeminjaman')->store('fileDataPeminjaman','public');
+                $validated['fileDataPeminjaman'] = $fileDataPeminjamanPath;
+            }
+
+            if($request->hasFile('fileDataPengaduan')){
+                $fileDataPengaduanPath = $request->file('fileDataPengaduan')->store('fileDataPengaduan','public');
+                $validated['fileDataPengaduan'] = $fileDataPengaduanPath;
+            }
+
             // Tambahkan user_id ke data yang divalidasi
             $validated['user_id'] = $user->id;
 
@@ -90,6 +115,31 @@ class DataRequestController extends Controller
             if ($request->hasFile('identityFile')) {
                 $identityFilePath = $request->file('identityFile')->store('identityFile', 'public');
                 $validated['identityFile'] = $identityFilePath;
+            }
+
+            if($request->hasFile('fileDataPerizinan')){
+                $fileDataPerizinanPath = $request->file('fileDataPerizinan')->store('fileDataPerizinan','public');
+                $validated['fileDataPerizinan'] = $fileDataPerizinanPath;
+            }
+
+            if($request->hasFile('fileDataRekomtek')){
+                $fileDataRekomtekPath = $request->file('fileDataRekomtek')->store('fileDataRekomtek','public');
+                $validated['fileDataRekomtek'] = $fileDataRekomtekPath;
+            }
+
+            if($request->hasFile('fileDataSda')){
+                $fileDataSdaPath = $request->file('fileDataSda')->store('fileDataSda','public');
+                $validated['fileDataSda'] = $fileDataSdaPath;
+            }
+
+            if($request->hasFile('fileDataPeminjaman')){
+                $fileDataPeminjamanPath = $request->file('fileDataPeminjaman')->store('fileDataPeminjaman','public');
+                $validated['fileDataPeminjaman'] = $fileDataPeminjamanPath;
+            }
+
+            if($request->hasFile('fileDataPengaduan')){
+                $fileDataPengaduanPath = $request->file('fileDataPengaduan')->store('fileDataPengaduan','public');
+                $validated['fileDataPengaduan'] = $fileDataPengaduanPath;
             }
 
             if ($request->hasFile('fileDataRequest')) {
@@ -136,11 +186,11 @@ class DataRequestController extends Controller
     public function handleUpload(UpdateDataRequest $request , DataRequest $dataRequest)
     {
 
-        // Upload file
-        if ($request->hasFile('fileDataRequest')) {
-            $fileDataRequestPath = $request->file('fileDataRequest')->store('fileDataRequest', 'public');
-            $dataRequest->update(['fileDataRequest' => $fileDataRequestPath]);
-        }
+       // Upload file
+       if ($request->hasFile('fileDataRequest')) {
+        $fileDataRequestPath = $request->file('fileDataRequest')->store('fileDataRequest', 'public');
+        $dataRequest->update(['fileDataRequest' => $fileDataRequestPath]);
+    }
 
         return redirect()->route('admin.data_requests.index')->with('success', 'File berhasil diupload.');
     }

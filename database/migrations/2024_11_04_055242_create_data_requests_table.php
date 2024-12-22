@@ -9,28 +9,42 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
         Schema::create('data_requests', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('survey_id')->nullable()->constrained()->onDelete('cascade');
-            $table->string('Rainfall')->nullable();
-            $table->string('RiverProfile')->nullable();
-            $table->string('Topography')->nullable();
-            $table->string('StudyResearch')->nullable();
-            $table->string('WaterAllocation')->nullable();
-            $table->string('otherCheckbox');
-            $table->string('requiredInformation');
+            $table->string('fileDataRequest')->nullable();
+            $table->string('fileDataPerizinan')->nullable();
+            $table->string('fileDataRekomtek')->nullable();
+            $table->string('fileDataSda')->nullable();
+            $table->string('fileDataPeminjaman')->nullable();
+            $table->string('fileDataPengaduan')->nullable();
+            $table->string('UnoperatedPermission')->nullable();
+            $table->string('OperationPermission')->nullable();
+            $table->string('RiverDiversion')->nullable();
+            $table->string('WaterAvailability')->nullable();
+            $table->string('MinerC')->nullable();
+            $table->string('RainFall')->nullable();
+            $table->string('WaterHeight')->nullable();
+            $table->string('Climatology')->nullable();
+            $table->string('WaterQuality')->nullable();
+            $table->string('WaterBalance')->nullable();
+            $table->string('RiverNetwork')->nullable();
+            $table->string('WaterDischarge')->nullable();
+            $table->string('WatershedMap')->nullable();
+            $table->string('Tools')->nullable();
+            $table->string('PumpsEquipment')->nullable();
+            $table->text('Information')->nullable();
+            $table->text('requiredInformation');
             $table->string('ForResearch')->nullable();
             $table->string('ForStudyProject')->nullable();
-            $table->string('otherPurpose');
+            $table->text('otherPurpose')->nullable();
             $table->string('Status')->nullable();
-            $table->string('fileDataRequest')->nullable();
             $table->boolean('is_Proof')->nullable();
             $table->softDeletes();
             $table->timestamps();
-
         });
     }
 

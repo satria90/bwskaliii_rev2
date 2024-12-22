@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
     <link rel="icon" href="{{ asset('assets\logo/logoPU.png') }}" type="image/x-icon">
     <script src="https://cdn.tailwindcss.com"></script>
+    @vite('resources/css/app.css')
 </head>
 <body class="bg-gray-100">
     <div class="flex items-center justify-center h-screen">

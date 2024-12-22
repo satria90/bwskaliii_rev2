@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
     <link rel="icon" href="{{ asset('assets\logo/logoPU.png') }}" type="image/x-icon">
     <script src="https://cdn.tailwindcss.com"></script>
+    @vite('resources/css/app.css')
 </head>
 <body class="bg-gray-100">
     <div class="flex items-center justify-center h-screen">
@@ -47,7 +48,7 @@
                     @endif
                     <!-- Email Address -->
                     <div class="mb-6 w-full">
-                        <x-input-label for="email" :value="__('Alamat Surel')" class="block text-gray-900 text-xl mb-4"/>
+                        <x-input-label for="email" :value="__('Alamat Surel')" class="text-blue-500 text-xl mb-4"/>
                         <x-text-input id="email" type="email" name="email" :value="old('email')" required autofocus class="w-full px-4 py-3 border border-gray-300 rounded-lg text-lg focus:outline-none focus:ring-2 focus:ring-gray-400" placeholder="Masukan Alamat Surel" />
                         <x-input-error :messages="$errors->get('email')" class="mt-2" />
                     </div>
@@ -65,13 +66,13 @@
 
                     <!-- Forgot Password Link -->
                     <div class="text-center mt-4">
-                        <a href="{{ route('password.request') }}" class="text-gray-600 text-lg hover:text-gray-800 ">
+                        <a href="{{ route('password.request') }}" class="text-blue-500 text-lg underline hover:text-blue-300 ">
                             {{ __('Lupa kata sandi?') }}
                         </a>
                     </div>
                     <p class="text-center text-lg mt-4">
                         Belum punya akun
-                        <a href="{{ route('register') }}" class="text-gray-600 hover:text-gray-800 ">
+                        <a href="{{ route('register') }}" class="text-blue-500 font-medium underline hover:text-blue-300 ">
                              {{ __('daftar disini') }}
                         </a>
                     </p>

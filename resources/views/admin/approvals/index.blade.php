@@ -8,6 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css">
     <title>Dashboard</title>
+    @vite('resources/css/app.css')
 </head>
 <body class="text-gray-800 font-poppins bg-gray-100">
     
@@ -73,18 +74,10 @@
                 </li>
             </ul>
             <ul class="ml-auto flex items-center">
-                <li class="mr-1">
-                    <form action="" class="p-4">
-                        <div class="relative w-full">
-                            <input type="text" for="cari" placeholder="Search..." class="py-2 pr-4 pl-10 bg-gray-50 w-full outline-none border border-gray-100 rounded-md text-sm focus:border-blue-700" />
-                            <i for="cari" class="ri-search-line absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500"></i>
-                        </div>
-                    </form>
-                </li>
-                <li class="mr-2 ">
+                <li class="mr-2">
                     <button type="button">
                         <a href="{{ route('profile.edit') }}">
-                            <img src="{{ Storage::url(Auth::user()->avatar) }}" class="w-8 h-8 rounded block object-cover align-middle">
+                            <img src="{{ Storage::url(Auth::user()->avatar) }}" class="w-11 h-11 rounded-full block object-cover align-middle">
                         </a>
                     </button>
                 </li>

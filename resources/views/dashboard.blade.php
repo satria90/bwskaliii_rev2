@@ -6,6 +6,7 @@
     <link href="../dist/css/style.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
     <title>Dashboard</title>
+    @vite('resources/css/app.css')
 </head>
 <body class="text-gray-800 font-poppins bg-gray-100">
     
@@ -23,10 +24,10 @@
                     <span>Beranda</span>
                 </a>
             </li>
+            @role('admin|owner')
             <li class="font-bold font-poppins mb-1">
                 PELAYANAN
             </li>
-            @role('admin|owner')
             <li class="font-poppins mb-1 group ">
                 <a href="{{ route('admin.data_requests.index') }}" class="flex items-center px-2 py-2 text-gray-400 hover:bg-gray-300 hover:text-blue-800 rounded-full group-[.active]:text-gray-300 ">
                     <i class="ri-foggy-line mr-1 text-lg"></i>
@@ -37,6 +38,9 @@
             
             @role('client')
             @if($approval && $approval->upload == 1)
+            <li class="font-bold font-poppins mb-1">
+                PELAYANAN
+            </li>
             <li class="font-poppins mb-1 group ">
                 <a href="{{ route('admin.data_requests.index') }}" class="flex items-center px-2 py-2 text-gray-400 hover:bg-gray-300 hover:text-blue-800 rounded-full group-[.active]:text-gray-300 ">
                     <i class="ri-foggy-line mr-1 text-lg"></i>
@@ -90,33 +94,65 @@
                 </li>
             </ul>
             <ul class="ml-auto flex items-center">
-                <li class="mr-1">
-                    <form action="" class="p-4">
-                        <div class="relative w-full" for="search">
-                            <input type="text" id="search" name="search" for="search" placeholder="Search..." class="py-2 pr-4 pl-10 bg-gray-50 w-full outline-none border border-gray-100 rounded-md text-sm focus:border-blue-700" />
-                            <i for="search" id="Search" name="search" class="ri-search-line absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500"></i>
-                        </div>
-                    </form>
-                </li>
-                <li class="dropdown mr-2">
-                    <button type="button" class="dropdown-toggle text-gray-400 w-8 h-8 rounded flex items-center justify-center hover:bg-gray-50 hover:text-gray-600">
-                        <i class="ri-notification-3-line"></i>
-                    </button>
-                    <div class="dropdown-menu shadow-md shadow-black/5 z-30 hidden max-w-xs w-full bg-white rounded-md border border-gray-100">
-                        <div class="flex items-center px-4 pt-4 border-b border-b-gray-100 notification-tab">
-                            <button type="button" data-tab="notification" data-tab-page="notifications" class="text-gray-400 font-medium text-[13px] hover:text-gray-600 border-b-2 border-b-transparent mr-4 pb-1 active">Notifications</button>
-                        </div>
-                    </div>
-                </li>
                 <li class="mr-2">
                     <button type="button">
                         <a href="{{ route('profile.edit') }}">
-                            <img src="{{ Storage::url(Auth::user()->avatar) }}" class="w-8 h-8 rounded block object-cover align-middle">
+                            <img src="{{ Storage::url(Auth::user()->avatar) }}" class="w-11 h-11 rounded-full block object-cover align-middle">
                         </a>
                     </button>
                 </li>
             </ul>
         </div>
+        @role('client')    
+        @if(!$approval || !$approval->proof || !$approval->idNumber)
+            <div class="p-6">
+                <h1 class="text-2xl mb-4 font-semibold text-slate-700">
+                    Selamat Datang di Pelayanan Permohonan Data dan Informasi BWSKALIII
+                </h1>
+                <div class="bg-white rounded-md border border-gray-100 p-6 shadow-lg w-80">
+                    <div class="text-xl font-medium text-gray-500 mb-4 text-left">
+                        Lengkapi profil anda untuk melanjutkan permohonan
+                    </div>
+                    <a href="{{route('profile.edit')}}" 
+                       class="block w-auto bg-gray-400 text-gray-800 text-center px-4 py-2 rounded-md shadow hover:bg-gray-600 transition">
+                        Lengkapi Profil
+                    </a>
+                </div>             
+            </div>
+        @endif
+        @endrole
+        @role('client')    
+            @if($approval && $approval->proof && $approval->idNumber)
+                @if($approval->upload == 1)
+                    <!-- Tampilkan Pilihan Pelayanan -->
+                    <div class="p-6">
+                        <h1 class="text-2xl font-semibold mb-2">Silahkan pilih pelayanan yang tersedia</h1>
+                        <div class="bg-white rounded-md border border-gray-100 p-6 shadow-lg w-96">
+                            <div class="text-lg font-bold text-gray-700">
+                            Permohonan data dan informasi
+                            </div>
+                            <p class="text-sm font-normal mb-4">
+                                Pelayanan yang memudahkan anda untuk mengajukan permohonan data atau permohonan informasi
+                            </p>
+                            <a href="{{route('admin.data_requests.index')}}" 
+                            class="block w-auto bg-gray-400 text-gray-800 text-center px-4 py-2 rounded-md shadow hover:bg-gray-600 transition">
+                                Pilih pelayanan
+                            </a>
+                        </div>             
+                    </div>
+                @else
+                    <!-- Tampilkan Status Proses -->
+                    <div class="p-6">
+                        <div class="bg-white rounded-md border border-gray-100 p-6 shadow-lg w-80">
+                            <div class="text-2xl font-medium text-gray-700 text-center">
+                                Data anda sedang diproses oleh pihak bwskaliii
+                            </div>
+                        </div>             
+                    </div>
+                @endif
+            @endif
+        @endrole
+        @role('admin|owner')
         <div class="p-6">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                 <div class="bg-white rounded-md border border-gray-100 p-6">
@@ -160,6 +196,7 @@
                     </div>
                 </div>
             </div>
+            @endrole
             @role('admin|owner')
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-5">
                 <div class="bg-white rounded-md border border-gray-100 p-6">

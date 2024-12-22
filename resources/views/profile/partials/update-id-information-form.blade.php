@@ -13,16 +13,16 @@
         @csrf
         <div>
             <x-input-label for="idNumber" :value="__('Nomor Identitas (NIK/KTP/Paspor)')" />
-            <x-text-input id="idNumber" name="idNumber" type="text" class="mt-1 block w-full" :value="old('idNumber',$approval->idNumber ?? '')" required placeholder="Masukkan Nomor Identitas (NIK/KTP/Paspor)" />
+            <x-text-input id="idNumber" name="idNumber" type="text" class="mt-1 p-2 block w-full" :value="old('idNumber',$approval->idNumber ?? '')" required placeholder="Masukkan Nomor Identitas (NIK/KTP/Paspor)" />
             <x-input-error class="mt-2" :messages="$errors->get('idNumber')" />
         </div>
         
         <div>
-            <x-input-label for="proof" :value="__('Upload Identitas')" />
+            <x-input-label class="mb-2" for="proof" :value="__('Upload Identitas')" />
             @if($approval->proof ?? '')
-                <img src="{{ Storage::url($approval->proof) }}" alt="proof" class="w-16 h-16 rounded block object-cover align-middle">
+                <img src="{{ Storage::url($approval->proof) }}" alt="proof" class="w-32 h-32 mb-2 rounded block object-cover align-middle">
             @endif
-            <x-text-input id="proof" name="proof" type="file" class="mt-1 block w-full" required placeholder="Upload file Identitas" />
+            <x-text-input id="proof" name="proof" type="file" class="mt-1 p-2 block w-full" required placeholder="Upload file Identitas" />
             <x-input-error class="mt-2" :messages="$errors->get('proof')" />
         </div>
 

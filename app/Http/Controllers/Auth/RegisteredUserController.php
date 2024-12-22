@@ -62,6 +62,9 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
+         // Memberikan role "client" ke pengguna baru
+        $user->assignRole('client');
+
         event(new Registered($user));
 
         return redirect()->route('login')->with('status', 'Akun berhasil dibuat');

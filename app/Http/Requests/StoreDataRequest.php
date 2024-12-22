@@ -22,20 +22,33 @@ class StoreDataRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
-            'Rainfall' => ['nullable', 'string'],
-            'RiverProfile' => ['nullable', 'string'],
-            'Topography' => ['nullable', 'string'],
-            'StudyResearch' => ['nullable', 'string'],
-            'WaterAllocation' => ['nullable', 'string'],
-            'otherCheckbox' => ['nullable', 'string'],
+            'fileDataRequest' => ['nullable', 'file', 'mimes:pdf,docx,doc,jpg,jpeg,png,zip'], // File upload
+            'fileDataPerizinan' => ['nullable', 'file', 'mimes:pdf,docx,doc,jpg,jpeg,png,zip'], // File upload
+            'fileDataRekomtek' => ['nullable', 'file', 'mimes:pdf,docx,doc,jpg,jpeg,png,zip'], // File upload
+            'fileDataSda' => ['nullable', 'file', 'mimes:pdf,docx,doc,jpg,jpeg,png,zip'], // File upload
+            'fileDataPeminjaman' => ['nullable', 'file', 'mimes:pdf,docx,doc,jpg,jpeg,png,zip'], // File upload
+            'fileDataPengaduan' => ['nullable', 'file', 'mimes:pdf,docx,doc,jpg,jpeg,png,zip'], // File upload
+            'UnoperatedPermission' => ['nullable', 'boolean'],
+            'OperatedPermission' => ['nullable', 'boolean'],
+            'RiverDiversion' => ['nullable', 'boolean'],
+            'WaterAvaiability' => ['nullable', 'boolean'],
+            'MinerC' => ['nullable', 'boolean'],
+            'RainFall' => ['nullable', 'boolean'],
+            'WaterHeight' => ['nullable', 'boolean'],
+            'Climatology' => ['nullable', 'boolean'],
+            'WaterQuality' => ['nullable', 'boolean'],
+            'WaterBalance' => ['nullable', 'boolean'],
+            'RiverNetwork' => ['nullable', 'boolean'],
+            'WaterDischarge' => ['nullable', 'boolean'],
+            'WatershedMap' => ['nullable', 'boolean'],
+            'Tools' => ['nullable', 'boolean'],
+            'PumpsEquipment' => ['nullable', 'boolean'],
+            'Information' => ['nullable', 'string'],
             'requiredInformation' => ['nullable', 'string'],
             'ForResearch' => ['nullable', 'boolean'],
             'ForStudyProject' => ['nullable', 'boolean'],
             'otherPurpose' => ['nullable', 'string'],
-            'Status' => ['nullable', 'string', 'max:255',] ,
-            'fileDataRequest' => ['nullable', 'file', 'mimes:pdf,docx,doc,jpg,jpeg,png,zip'],
-            
+            'Status' => ['nullable', 'string', 'max:255'],
         ];
     }
 }
