@@ -5,7 +5,7 @@
         </h2>
 
         <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-            {{ __("Lengkapi data diri anda agar dapat meengirimkan permohonan data") }}
+            {{ __("Lengkapi data diri anda agar dapat mengirimkan permohonan data") }}
         </p>
     </header>
 
@@ -27,7 +27,7 @@
         <div>
             <x-input-label class="mb-2" for="avatar" :value="__('Foto Profil')" />
             @if($user->avatar)
-                <img src="{{ Storage::url($user->avatar) }}" alt="avatar" class="w-32 h-32 mb-2 rounded block object-cover align-middle">
+            <img src="{{ $user->avatar ? (str_starts_with($user->avatar, 'avatar/') ? Storage::url($user->avatar) : asset($user->avatar)) : asset('assets/img/avatar-default.png') }}" alt="avatar" class="w-32 h-32 mb-2 rounded block object-cover align-middle">        
             @endif
             <x-text-input id="avatar" name="avatar" type="file" class="mt-1 p-2 block w-full" :value="old('avatar', $user->avatar)" autofocus autocomplete="avatar" />
             <x-input-error class="mt-2" :messages="$errors->get('avatar')" />

@@ -7,7 +7,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css">
-    <title>Dashboard</title>
+    <title>BWSKAL III | Pengelolaan Akun</title>
+    <link rel="icon" href="{{ asset('assets/logo/logoPU.png') }}" type="image/png">
     @vite('resources/css/app.css')
 </head>
 <body class="text-gray-800 font-poppins bg-gray-100">
@@ -77,7 +78,12 @@
                 <li class="mr-2">
                     <button type="button">
                         <a href="{{ route('profile.edit') }}">
-                            <img src="{{ Storage::url(Auth::user()->avatar) }}" class="w-11 h-11 rounded-full block object-cover align-middle">
+                            <img src="{{ 
+                                Auth::user()->avatar 
+                                ? (str_starts_with(Auth::user()->avatar, 'avatar/') 
+                                    ? Storage::url(Auth::user()->avatar) 
+                                    : asset(Auth::user()->avatar)) 
+                                : asset('assets/img/avatar-default.png') }}"  class="w-11 h-11 rounded-full block object-cover align-middle">
                         </a>
                     </button>
                 </li>
@@ -108,7 +114,7 @@
                             @forelse($approvals as $approval)
                             <tr>
                                 <!-- Kolom Avatar dan Nama -->
-                                <td class="px-6 py-4 whitespace-nowrap flex items-center">
+                                <td class="px-6 py-4  whitespace-nowrap flex items-center">
                                     {{ $approval->user->email }}
                                 </td>
 
@@ -129,11 +135,19 @@
                                     </span>
                                     @endif
                                 </td>
-                                <!-- Kolom Aksi -->
-                                <td class="text-stone-700 hover:underline">
+                                {{-- <td class="text-stone-700 hover:underline">
                                     <a href="{{ route('admin.approvals.show',$approval) }}" class="ri-eye-line">
+                                        edit
+                                    </a>
+                                </td> --}}
+                                <td class="text-stone-700">
+                                    <a href="{{ route('admin.approvals.show',$approval) }}" class="ri-eye-line hover:underline text-stone-700">
                                         Rincian
                                     </a>
+                                    <br>
+                                    {{-- <a href="{{ route('admin.approvals.edit',$approval) }}" class="ri-edit-2-line hover:underline text-amber-600">
+                                        Sunting
+                                    </a> --}}
                                 </td>
                             </tr>
                             @empty

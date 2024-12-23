@@ -41,6 +41,10 @@ Route::middleware('auth')->group(function () {
             ->name('data_requests.handleUpload')
             ->middleware('role:owner|admin');
 
+        Route::get('data_requests/{dataRequest}/edit', [DataRequestController::class, 'edit'])
+        ->name('data_requests.edit')
+        ->middleware('role:owner|admin');    
+
         Route::resource('data_requests', DataRequestController::class)
         ->middleware('role:owner|admin|client');
 

@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ asset('dist\css/style.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
-    <title>Dashboard</title>
+    <title>BWSKAL III | Detail Permohonan</title>
+    <link rel="icon" href="{{ asset('assets/logo/logoPU.png') }}" type="image/png">
     @vite('resources/css/app.css')
     <style>
         .dropdown-content {
@@ -91,7 +92,12 @@
                 <li class="mr-2">
                     <button type="button">
                         <a href="{{ route('profile.edit') }}">
-                            <img src="{{ Storage::url(Auth::user()->avatar) }}" class="w-11 h-11 rounded-full block object-cover align-middle">
+                            <img src="{{ 
+                                Auth::user()->avatar 
+                                ? (str_starts_with(Auth::user()->avatar, 'avatar/') 
+                                    ? Storage::url(Auth::user()->avatar) 
+                                    : asset(Auth::user()->avatar)) 
+                                : asset('assets/img/avatar-default.png') }}"  class="w-11 h-11 rounded-full block object-cover align-middle">
                         </a>
                     </button>
                 </li>

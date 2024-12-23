@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ asset('dist\css/style.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
-    <title>Dashboard</title>
+    <title>BWSKAL III | Detail Akun</title>
+    <link rel="icon" href="{{ asset('assets/logo/logoPU.png') }}" type="image/png">
     @vite('resources/css/app.css')
 </head>
 <body class="text-gray-800 font-poppins bg-gray-100">
@@ -77,7 +78,12 @@
                 <li class="mr-2">
                     <button type="button">
                         <a href="{{ route('profile.edit') }}">
-                            <img src="{{ Storage::url(Auth::user()->avatar) }}" class="w-11 h-11 rounded-full block object-cover align-middle">
+                            <img src="{{ 
+                                Auth::user()->avatar 
+                                ? (str_starts_with(Auth::user()->avatar, 'avatar/') 
+                                    ? Storage::url(Auth::user()->avatar) 
+                                    : asset(Auth::user()->avatar)) 
+                                : asset('assets/img/avatar-default.png') }}"  class="w-11 h-11 rounded-full block object-cover align-middle">
                         </a>
                     </button>
                 </li>
@@ -86,22 +92,22 @@
         <!-- Navbar End -->
        
         {{-- Konten --}}
-        <div class="p-6 mt-10">
+        <div class="p-6">
             <h1 class="font-poppins font-bold text-xl">Kelola Data Pemohon</h1>
             <p class="font-poppins text-gray-400">Diharapkan  memverifikasi dengan benar</p>
         </div>
         <main class="flex-grow container mx-auto px-6 py-4">
             <div class="bg-white rounded-md border border-gray-100 shadow-md">
                 <!-- Title Section -->
-                <div class="bg-blue-700 text-white p-4 rounded-b-md">
+                {{-- <div class="bg-blue-700 text-white p-4 rounded-b-md">
                     <h2 class="text-xl font-bold">Profil Data Diri</h2>
-                </div>
+                </div> --}}
     
                 <!-- Body Section -->
-                <div class="p-6">
+                {{-- <div class="p-6">
                     <table class="table-auto w-full  ">
                         <tbody>
-                            <!-- Baris 1 -->
+                          
                             <tr class="">
                                 <td class=" px-4 py-2 font-semibold text-gray-700">Nama Lengkap</td>
                                 <td class=" px-4 py-2 text-gray-600">{{ $approval->user->fullName }}</td>
@@ -121,7 +127,7 @@
                                 <td class=" px-4 py-2 font-semibold text-gray-700">Alamat</td>
                                 <td class=" px-4 py-2 text-gray-600">{{ $approval->user->homeAddress }}</td>
                             </tr>
-                            <!-- Baris 2 -->
+                       
                             <tr class="bg-white">
                                 <td class=" px-4 py-2 font-semibold text-gray-700">Pekerjaan</td>
                                 <td class=" px-4 py-2 text-gray-600">{{ $approval->user->occupation }}</td>
@@ -137,15 +143,15 @@
                             </tr>
                         </tbody>
                     </table>
-                </div>
+                </div> --}}
                 
-                <!-- Footer Section -->
+                {{-- <!-- Footer Section -->
                 <div class="bg-gray-100 p-4 rounded-b-md">
                     <hr class="my-5">
 
-                </div>
+                </div> --}}
             </div>
-            <div class="bg-white rounded-md border border-gray-100 shadow-md">
+            <div class="bg-white rounded-md border border-gray-100 shadow-md ">
                 <!-- Title Section -->
                 <div class="bg-blue-700 text-white p-4 rounded-b-md">
                     <h2 class="text-xl font-bold">Profil Data ID</h2>
@@ -175,6 +181,27 @@
                                 <td class=" px-4 py-2 font-semibold text-gray-700">Nomor Telepon</td>
                                 <td class=" px-4 py-2 text-gray-600">{{ $approval->user->phoneNumber }}</td>
                             </tr>
+                            
+                            <tr class="">
+                                <td class=" px-4 py-2 font-semibold text-gray-700">Alamat</td>
+                                <td class=" px-4 py-2 text-gray-600">{{ $approval->user->homeAddress }}</td>
+                            </tr>
+
+                            <tr class="bg-white">
+                                <td class=" px-4 py-2 font-semibold text-gray-700">Pekerjaan</td>
+                                <td class=" px-4 py-2 text-gray-600">{{ $approval->user->occupation }}</td>
+                            </tr>
+
+                            <tr class="bg-white">
+                                <td class=" px-4 py-2 font-semibold text-gray-700">Nama Perusahaan</td>
+                                <td class=" px-4 py-2 text-gray-600">{{ $approval->user->companyName }}</td>
+                            </tr>
+
+                            <tr class="bg-white">
+                                <td class=" px-4 py-2 font-semibold text-gray-700">Alamat Perusahaan</td>
+                                <td class=" px-4 py-2 text-gray-600">{{ $approval->user->companyAddress }}</td>
+                            </tr>
+
                             <!-- Baris 3 -->
                             <tr>
                                 <td class="px-4 py-2 font-semibold text-gray-700">Kartu Identitas (KTP)</td>

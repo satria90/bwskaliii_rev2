@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ asset('dist\css/style.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
-    <title>Dashboard</title>
+    <title>BWSKAL III | Upload Permohonan</title>
+    <link rel="icon" href="{{ asset('assets/logo/logoPU.png') }}" type="image/png">
     @vite('resources/css/app.css')
     <style>
         .dropdown-content {
@@ -91,7 +92,12 @@
                 <li class="mr-2">
                     <button type="button">
                         <a href="{{ route('profile.edit') }}">
-                            <img src="{{ Storage::url(Auth::user()->avatar) }}" class="w-11 h-11 rounded-full block object-cover align-middle">
+                            <img src="{{ 
+                                Auth::user()->avatar 
+                                ? (str_starts_with(Auth::user()->avatar, 'avatar/') 
+                                    ? Storage::url(Auth::user()->avatar) 
+                                    : asset(Auth::user()->avatar)) 
+                                : asset('assets/img/avatar-default.png') }}"  class="w-11 h-11 rounded-full block object-cover align-middle">
                         </a>
                     </button>
                 </li>
@@ -310,21 +316,32 @@
                             <input type="file" required id="fileDataRequest" name="fileDataRequest" class="mt-1 px-3 py-2 bg-gray-100 border shadow-sm border-slate-200 placeholder-gray-400 focus:outline-none focus:border-gray-300 focus:ring-gray-300 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Upload file Diminta" />
                         </label>
 
-                        <div class="space-y-2 mb-6">
-                            <div class="flex items-center">
-                                <input {{ $dataRequest->Status == 'diproses' ? 'checked' : '' }} type="radio" id="diproses" name="Status" value="diproses" class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
-                                <label for="diproses" class="ml-2 font-poppins text-sm text-slate-700">Diproses</label>
-                            </div>
-                        
-                            <div class="flex items-center">
-                                <input {{ $dataRequest->Status == 'diterima' ? 'checked' : '' }} type="radio" id="diterima" name="Status" value="diterima" class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
-                                <label for="diterima" class="ml-2 font-poppins text-sm text-slate-700">Diterima</label>
-                            </div>
-                        
-                            <div class="flex items-center">
-                                <input   {{ $dataRequest->Status == 'ditolak' ? 'checked' : '' }} type="radio" id="ditolak" name="Status" value="ditolak" class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
-                                <label for="ditolak" class="ml-2 font-poppins text-sm text-slate-700">Ditolak</label>
-                            </div>
+                        <div class="flex space-x-2 mb-8">
+                            <!-- Diterima Button -->
+                            <label>
+                                <input 
+                                    type="radio" 
+                                    name="Status" 
+                                    value="diterima" 
+                                    class="hidden peer" 
+                                    {{ old('Status', $dataRequest->Status ?? '') == 'diterima' ? 'checked' : '' }}>
+                                <span class="px-4 py-2 rounded-md cursor-pointer peer-checked:bg-yellow-500 peer-checked:text-white hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-blue-300">
+                                    Diterima
+                                </span>
+                            </label>
+                            
+                            <!-- Ditolak Button -->
+                            <label>
+                                <input 
+                                    type="radio" 
+                                    name="Status" 
+                                    value="ditolak" 
+                                    class="hidden peer" 
+                                    {{ old('Status', $dataRequest->Status ?? '') == 'ditolak' ? 'checked' : '' }}>
+                                <span class="px-4 py-2 rounded-md cursor-pointer peer-checked:bg-red-500 peer-checked:text-white hover:bg-yellow-100 focus:outline-none focus:ring-2 focus:ring-yellow-300">
+                                    Ditolak
+                                </span>
+                            </label>
                         </div>
                         
                         <button type="submit" class="font-bold w-20 h-10 mt-1 px-3 py-2 bg-blue-800 border shadow-sm border-blue-800 block rounded-md sm:text-sm text-white hover:bg-blue-900 hover:text-white">

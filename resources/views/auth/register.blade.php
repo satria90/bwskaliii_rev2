@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="../dist/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
-    <title>BWSKAL III</title>
+    <title>BWSKAL III | Register</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
     <link rel="icon" href="{{ asset('assets\logo/logoPU.png') }}" type="image/x-icon">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -87,8 +87,8 @@
 
                     <!-- Login -->
                     <p class="text-center text-lg mt-4">
-                        Sudah ada akun,
-                        <a href="{{ route('login') }}" class="text-gray-600 hover:text-gray-800 ">
+                        Sudah ada akun?
+                        <a href="{{ route('login') }}" class="text-blue-600 hover:text-blue-300 underline">
                              {{ __('Masuk') }}
                         </a>
                     </p>

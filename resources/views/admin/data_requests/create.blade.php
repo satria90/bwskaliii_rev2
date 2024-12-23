@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ asset('dist\css/style.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
-    <title>Dashboard</title>
+    <title>BWSKAL III | Tambah Permohonan</title>
+    <link rel="icon" href="{{ asset('assets/logo/logoPU.png') }}" type="image/png">
     @vite('resources/css/app.css')
 
     <!-- style untuk dropdown -->
@@ -104,7 +105,7 @@
                 </li>
             </ul>
             <ul class="ml-auto flex items-center">
-                <li class="mr-1">
+                {{-- <li class="mr-1">
                     <form action="" class="p-4">
                         <div class="relative w-full">
                             <input type="text" for="cari" placeholder="Search..." class="py-2 pr-4 pl-10 bg-gray-50 w-full outline-none border border-gray-100 rounded-md text-sm focus:border-blue-700" />
@@ -135,12 +136,17 @@
                             </ul>
                         </div>
                     </div>
-                </li>
+                </li> --}}
                 <ul class="ml-auto flex items-center">
                     <li class="mr-2">
                         <button type="button">
                             <a href="{{ route('profile.edit') }}">
-                                <img src="{{ Storage::url(Auth::user()->avatar) }}" class="w-11 h-11 rounded-full block object-cover align-middle">
+                                <img src="{{ 
+                                    Auth::user()->avatar 
+                                    ? (str_starts_with(Auth::user()->avatar, 'avatar/') 
+                                        ? Storage::url(Auth::user()->avatar) 
+                                        : asset(Auth::user()->avatar)) 
+                                    : asset('assets/img/avatar-default.png') }}"  class="w-11 h-11 rounded-full block object-cover align-middle">
                             </a>
                         </button>
                     </li>
@@ -158,7 +164,7 @@
                         <h1 class="text-2xl font-bold mb-6">Pengajuan Permohonan dan Informasi</h1>
                         <p class="mb-3 text-lg font-semibold text-gray-500 after:content-['*'] after:ml-0.5 after:text-red-500">Silahkan Pilih Permohonan dan Informasi</p>
         
-                        <div class="mb-3">
+                        {{-- <div class="mb-3">
                             <button
                                 type="button"
                                 class="w-full flex justify-between items-center bg-gray-100 px-4 py-2 text-left rounded-md shadow focus:outline-none focus:ring focus:ring-blue-300"
@@ -189,10 +195,10 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>                        
+                        </div>                         --}}
         
                         <!-- Dropdown 2 -->
-                        <div class="mb-3">
+                        {{-- <div class="mb-3">
                             <button type="button" class="w-full flex justify-between items-center bg-gray-100 px-4 py-2 text-left rounded-md shadow focus:outline-none focus:ring focus:ring-blue-300"
                                 onclick="toggleCollapse('dropdown2')">
                                 <span class="font-bold text-slate-700">Permohonan Surat Keterangan Ketersediaan Air & Rekomendasi Teknis Galian C</span>
@@ -217,7 +223,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
 
 
                         <!-- Dropdown 3 -->
@@ -280,7 +286,7 @@
                         </div>
 
                             <!-- Dropdown 4 -->
-                            <div class="mb-3">
+                            {{-- <div class="mb-3">
                                 <button type="button" class="w-full flex justify-between items-center bg-gray-100 px-4 py-2 text-left rounded-md shadow focus:outline-none focus:ring focus:ring-blue-300" onclick="toggleCollapse('dropdown4')">
                                     <span class="font-bold text-slate-700">Permohonan Peminjaman Sarana Prasarana BWS Kalimantan III Banjarmasin</span>
                                     <i id="icon-dropdown4" class="ri-arrow-down-s-line text-slate-700 transition-transform"></i>
@@ -305,10 +311,10 @@
                                         <label for="PumpsEquipment" class="ml-2 font-poppins text-sm text-slate-700">Pompa dan Alat Berat</label>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
 
                            <!-- Dropdown 5 -->
-                            <div class="mb-3">
+                            {{-- <div class="mb-3">
                                 <button type="button" class="w-full flex justify-between items-center bg-gray-100 px-4 py-2 text-left rounded-md shadow focus:outline-none focus:ring focus:ring-blue-300" onclick="toggleCollapse('dropdown5')">
                                     <span class="font-bold text-slate-700">Pengaduan Masyarakat</span>
                                     <i id="icon-dropdown5" class="ri-arrow-down-s-line text-slate-700 transition-transform"></i>
@@ -326,7 +332,7 @@
                                     </label>
                                     <textarea id="Information" name="Information" rows="4" class="block w-full border border-gray-300 rounded-md p-2 text-sm text-slate-700"></textarea>
                                 </div>
-                            </div>
+                            </div> --}}
         
                             <label class="block mb-6">
                                 <span class="mb-2 after:content-['*'] after:ml-0.5 after:text-red-500 block text-lg font-poppins text-gray-500 font-semibold">

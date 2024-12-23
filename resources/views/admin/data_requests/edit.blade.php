@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ asset('dist\css/style.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
-    <title>Dashboard</title>
+    <title>BWSKAL III | Sunting Permohonan</title>
+    <link rel="icon" href="{{ asset('assets/logo/logoPU.png') }}" type="image/png">
     @vite('resources/css/app.css')
      <style>
         .dropdown-content {
@@ -40,14 +41,14 @@
                 PELAYANAN
             </li>
             <li class="font-poppins mb-1 group active">
-                <a href="#" class="flex items-center px-2 py-2 text-gray-400 hover:bg-gray-300 hover:text-blue-800 rounded-full group-[.active]:bg-gray-300 group-[.active]:text-blue-900 ">
+                <a href="#" class="flex items-center px-2 py-2 text-gray-400 hover:bg-gray-300 hover:text-blue-800 rounded-full group-[.active]:bg-gray-300 group-[.active]:text-blue-900">
                     <i class="ri-foggy-line mr-1 text-lg"></i>
                     <span>Permohonan</span>
                 </a>
             </li>
             @role('admin|owner')
             <li class="font-poppins mb-1 group">
-                <a href="{{ route('admin.approvals.index') }}" class="flex items-center px-2 py-2 text-gray-400 hover:bg-gray-300 hover:text-blue-800 rounded-full group-[.active]:text-gray-300 ">
+                <a href="{{ route('admin.approvals.index') }}" class="flex items-center px-2 py-2 text-gray-400 hover:bg-gray-300 hover:text-blue-800 rounded-full group-[.active]:text-gray-300">
                     <i class="ri-team-line mr-3 text-lg"></i>
                     <span>Manajemen Akun</span>
                 </a>
@@ -55,7 +56,7 @@
             @endrole
             @role('owner')
             <li class="font-poppins mb-1 group">
-                <a href="{{ route('admin.admins.index') }}" class="flex items-center px-2 py-2 text-gray-400 hover:bg-gray-300 hover:text-blue-800 rounded-full group-[.active]:text-gray-300 ">
+                <a href="{{ route('admin.admins.index') }}" class="flex items-center px-2 py-2 text-gray-400 hover:bg-gray-300 hover:text-blue-800 rounded-full group-[.active]:text-gray-300">
                     <i class="ri-group-line mr-3 text-lg"></i>
                     <span>Manajemen Admin</span>
                 </a>
@@ -91,7 +92,12 @@
                 <li class="mr-2">
                     <button type="button">
                         <a href="{{ route('profile.edit') }}">
-                            <img src="{{ Storage::url(Auth::user()->avatar) }}" class="w-11 h-11 rounded-full block object-cover align-middle">
+                            <img src="{{ 
+                                Auth::user()->avatar 
+                                ? (str_starts_with(Auth::user()->avatar, 'avatar/') 
+                                    ? Storage::url(Auth::user()->avatar) 
+                                    : asset(Auth::user()->avatar)) 
+                                : asset('assets/img/avatar-default.png') }}"  class="w-11 h-11 rounded-full block object-cover align-middle">
                         </a>
                     </button>
                 </li>
@@ -307,24 +313,41 @@
                             </div>
                             <input type="hidden" name="status" value="diproses">
 
-                            <div class="space-y-2 mb-6">
-
-                                <div class="flex items-center">
-                                    <input {{ $dataRequest->Status == 'diproses' ? 'checked' : '' }} type="radio" id="diproses" name="Status" value="diproses" class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
-                                    <label for="diproses" class="ml-2 font-poppins text-sm text-slate-700">Diproses</label>
-                                </div>
-                            
-                                <div class="flex items-center">
-                                    <input {{ $dataRequest->Status == 'diterima' ? 'checked' : '' }} type="radio" id="diterima" name="Status" value="diterima" class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
-                                    <label for="diterima" class="ml-2 font-poppins text-sm text-slate-700">Diterima</label>
-                                </div>
-                            
-                                <div class="flex items-center">
-                                    <input {{ $dataRequest->Status == 'ditolak' ? 'checked' : '' }} type="radio" id="ditolak" name="Status" value="ditolak" class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
-                                    <label for="ditolak" class="ml-2 font-poppins text-sm text-slate-700">Ditolak</label>
-                                </div>
+                            <div class="flex space-x-2 mb-8">
+                                <!-- Diterima Button -->
+                                <label>
+                                    <input 
+                                        type="radio" 
+                                        name="Status" 
+                                        value="diterima" 
+                                        class="hidden peer" 
+                                        {{ old('Status', $dataRequest->Status ?? '') == 'diterima' ? 'checked' : '' }}>
+                                    <span class="px-4 py-2 rounded-md cursor-pointer peer-checked:bg-yellow-500 peer-checked:text-white hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-blue-300">
+                                        Diterima
+                                    </span>
+                                </label>
                                 
+                                <!-- Ditolak Button -->
+                                <label>
+                                    <input 
+                                        type="radio" 
+                                        name="Status" 
+                                        value="ditolak" 
+                                        class="hidden peer" 
+                                        {{ old('Status', $dataRequest->Status ?? '') == 'ditolak' ? 'checked' : '' }}>
+                                    <span class="px-4 py-2 rounded-md cursor-pointer peer-checked:bg-red-500 peer-checked:text-white hover:bg-yellow-100 focus:outline-none focus:ring-2 focus:ring-yellow-300">
+                                        Ditolak
+                                    </span>
+                                </label>
                             </div>
+                            
+                            
+                            
+                            <!-- Hidden Input for Status -->
+                            <input type="hidden" id="status-input" name="status" value="draft">
+                            
+                           
+                            
 
             
                             <!-- Tombol Submit -->
@@ -336,6 +359,26 @@
                 </div>
             </div>            
     </main>
+    {{-- <script>
+        function setStatus(status) {
+            // Update hidden input value
+            document.getElementById('status-input').value = status;
+    
+            // Reset all button styles
+            document.getElementById('draft-btn').classList.remove('ring-2', 'ring-offset-2', 'ring-blue-400');
+            document.getElementById('scheduled-btn').classList.remove('ring-2', 'ring-offset-2', 'ring-yellow-400');
+            document.getElementById('published-btn').classList.remove('ring-2', 'ring-offset-2', 'ring-green-400');
+    
+            // Highlight selected button
+            if (status === 'draft') {
+                document.getElementById('draft-btn').classList.add('ring-2', 'ring-offset-2', 'ring-blue-400');
+            } else if (status === 'scheduled') {
+                document.getElementById('scheduled-btn').classList.add('ring-2', 'ring-offset-2', 'ring-yellow-400');
+            } else if (status === 'published') {
+                document.getElementById('published-btn').classList.add('ring-2', 'ring-offset-2', 'ring-green-400');
+            }
+        }
+    </script> --}}
     <script>
         // Fungsi toggle manual
         function toggleCollapse(dropdownId) {

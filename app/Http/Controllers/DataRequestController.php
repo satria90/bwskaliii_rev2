@@ -48,30 +48,30 @@ class DataRequestController extends Controller
                 $validated['Status'] = 'diproses'; // Menetapkan nilai default
             }
 
-            if($request->hasFile('fileDataPerizinan')){
-                $fileDataPerizinanPath = $request->file('fileDataPerizinan')->store('fileDataPerizinan','public');
-                $validated['fileDataPerizinan'] = $fileDataPerizinanPath;
-            }
+            // if($request->hasFile('fileDataPerizinan')){
+            //     $fileDataPerizinanPath = $request->file('fileDataPerizinan')->store('fileDataPerizinan','public');
+            //     $validated['fileDataPerizinan'] = $fileDataPerizinanPath;
+            // }
 
-            if($request->hasFile('fileDataRekomtek')){
-                $fileDataRekomtekPath = $request->file('fileDataRekomtek')->store('fileDataRekomtek','public');
-                $validated['fileDataRekomtek'] = $fileDataRekomtekPath;
-            }
+            // if($request->hasFile('fileDataRekomtek')){
+            //     $fileDataRekomtekPath = $request->file('fileDataRekomtek')->store('fileDataRekomtek','public');
+            //     $validated['fileDataRekomtek'] = $fileDataRekomtekPath;
+            // }
 
             if($request->hasFile('fileDataSda')){
                 $fileDataSdaPath = $request->file('fileDataSda')->store('fileDataSda','public');
                 $validated['fileDataSda'] = $fileDataSdaPath;
             }
 
-            if($request->hasFile('fileDataPeminjaman')){
-                $fileDataPeminjamanPath = $request->file('fileDataPeminjaman')->store('fileDataPeminjaman','public');
-                $validated['fileDataPeminjaman'] = $fileDataPeminjamanPath;
-            }
+            // if($request->hasFile('fileDataPeminjaman')){
+            //     $fileDataPeminjamanPath = $request->file('fileDataPeminjaman')->store('fileDataPeminjaman','public');
+            //     $validated['fileDataPeminjaman'] = $fileDataPeminjamanPath;
+            // }
 
-            if($request->hasFile('fileDataPengaduan')){
-                $fileDataPengaduanPath = $request->file('fileDataPengaduan')->store('fileDataPengaduan','public');
-                $validated['fileDataPengaduan'] = $fileDataPengaduanPath;
-            }
+            // if($request->hasFile('fileDataPengaduan')){
+            //     $fileDataPengaduanPath = $request->file('fileDataPengaduan')->store('fileDataPengaduan','public');
+            //     $validated['fileDataPengaduan'] = $fileDataPengaduanPath;
+            // }
 
             // Tambahkan user_id ke data yang divalidasi
             $validated['user_id'] = $user->id;
@@ -83,11 +83,21 @@ class DataRequestController extends Controller
         return redirect()->route('admin.data_requests.index')->with('success', 'Data berhasil disimpan.');
     }
 
-    public function show(DataRequest $dataRequest)
-    {
-        //
-        return view('admin.data_requests.show', compact('dataRequest'));
+    public function show($id)
+{
+    // Cari data request berdasarkan ID
+    $dataRequest = DataRequest::findOrFail($id);
+
+    // Periksa apakah data request milik pengguna yang sedang login
+    if ($dataRequest->user_id !== Auth::id()) {
+        // Jika tidak sesuai, redirect atau tampilkan pesan error
+        return redirect()->route('admin.data_requests.index')->with('error', 'Anda tidak memiliki izin untuk mengakses data ini.');
     }
+
+    // Jika ID cocok, tampilkan data
+    return view('admin.data_requests.show', compact('dataRequest'));
+}
+
 
     public function edit(DataRequest $dataRequest)
     {
@@ -117,30 +127,30 @@ class DataRequestController extends Controller
                 $validated['identityFile'] = $identityFilePath;
             }
 
-            if($request->hasFile('fileDataPerizinan')){
-                $fileDataPerizinanPath = $request->file('fileDataPerizinan')->store('fileDataPerizinan','public');
-                $validated['fileDataPerizinan'] = $fileDataPerizinanPath;
-            }
+            // if($request->hasFile('fileDataPerizinan')){
+            //     $fileDataPerizinanPath = $request->file('fileDataPerizinan')->store('fileDataPerizinan','public');
+            //     $validated['fileDataPerizinan'] = $fileDataPerizinanPath;
+            // }
 
-            if($request->hasFile('fileDataRekomtek')){
-                $fileDataRekomtekPath = $request->file('fileDataRekomtek')->store('fileDataRekomtek','public');
-                $validated['fileDataRekomtek'] = $fileDataRekomtekPath;
-            }
+            // if($request->hasFile('fileDataRekomtek')){
+            //     $fileDataRekomtekPath = $request->file('fileDataRekomtek')->store('fileDataRekomtek','public');
+            //     $validated['fileDataRekomtek'] = $fileDataRekomtekPath;
+            // }
 
             if($request->hasFile('fileDataSda')){
                 $fileDataSdaPath = $request->file('fileDataSda')->store('fileDataSda','public');
                 $validated['fileDataSda'] = $fileDataSdaPath;
             }
 
-            if($request->hasFile('fileDataPeminjaman')){
-                $fileDataPeminjamanPath = $request->file('fileDataPeminjaman')->store('fileDataPeminjaman','public');
-                $validated['fileDataPeminjaman'] = $fileDataPeminjamanPath;
-            }
+            // if($request->hasFile('fileDataPeminjaman')){
+            //     $fileDataPeminjamanPath = $request->file('fileDataPeminjaman')->store('fileDataPeminjaman','public');
+            //     $validated['fileDataPeminjaman'] = $fileDataPeminjamanPath;
+            // }
 
-            if($request->hasFile('fileDataPengaduan')){
-                $fileDataPengaduanPath = $request->file('fileDataPengaduan')->store('fileDataPengaduan','public');
-                $validated['fileDataPengaduan'] = $fileDataPengaduanPath;
-            }
+            // if($request->hasFile('fileDataPengaduan')){
+            //     $fileDataPengaduanPath = $request->file('fileDataPengaduan')->store('fileDataPengaduan','public');
+            //     $validated['fileDataPengaduan'] = $fileDataPengaduanPath;
+            // }
 
             if ($request->hasFile('fileDataRequest')) {
                 $fileDataRequestPath = $request->file('fileDataRequest')->store('fileDataRequest', 'public');
