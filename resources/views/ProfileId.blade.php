@@ -55,43 +55,29 @@
 
     <!-- Start Main -->
     <main class="w-full md:w-[calc(100%-256px)] md:ml-64 bg-gray-100 min-h-screen border-l border-gray-100 font-poppins transition-all main">
+
+        {{--Navigasi--}}
+        @include('components.navigator')
         
-        <div class="py-2 px-6 bg-white flex items-center shadow-md shadow-gray-400 sticky top-0 left-0 z-30">
-            <button type="button" class="text-2xl text-gray-600 sidebar-toggle">
-                <i class="ri-menu-line"></i>
-            </button>
-            <ul class="flex items-center text-base ml-4 ">
-                <li class="font-poppins mr-2">
-                    <a href="#" class="text-xl ri-home-2-line hover:text-gray-500">Beranda</a>
-                </li>
-                <li class="mr-2">
-                    <form method="POST" action="{{ route('logout') }}" style="display: none;" id="logout-form">
-                        @csrf
-                    </form>
-                    <a href="logout" class="text-xl ri-logout-box-r-line font-poppins hover:text-gray-500"
-                       onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                        Keluar
-                    </a>
-                </li>
-            </ul>
-            <ul class="ml-auto flex items-center">
-                <li class="mr-1">
-                    <form action="" class="p-4">
-                        <div class="relative w-full" for="search">
-                            <input type="text" id="search" name="search" for="search" placeholder="Search..." class="py-2 pr-4 pl-10 bg-gray-50 w-full outline-none border border-gray-100 rounded-md text-sm focus:border-blue-700" />
-                            <i for="search" id="Search" name="search" class="ri-search-line absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500"></i>
-                        </div>
-                    </form>
-                </li>
-                <li class="mr-2">
-                    <button type="button">
-                        <a href="{{ route('profile.edit') }}">
-                            <img src="{{ Storage::url(Auth::user()->avatar) }}" class="w-8 h-8 rounded block object-cover align-middle">
-                        </a>
-                    </button>
-                </li>
-            </ul>
+        @if (session('profileSuccess'))
+        <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4">
+            <strong class="font-bold">Berhasil!</strong>
+            <span class="block sm:inline">{{ session('profileSuccess') }}</span>
+            <span class="absolute top-0 bottom-0 right-0 px-4 py-3" onclick="this.parentElement.style.display='none';">
+                <svg class="fill-current h-6 w-6 text-green-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Tutup</title><path d="M14.348 14.849a1 1 0 01-1.414 0L10 11.914l-2.934 2.935a1 1 0 01-1.414-1.414l2.935-2.934-2.935-2.935a1 1 0 011.414-1.414L10 8.586l2.934-2.935a1 1 0 011.414 1.414l-2.935 2.935 2.935 2.934a1 1 0 010 1.414z"/></svg>
+            </span>
         </div>
+        @endif
+
+        @if (session('error'))
+        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4">
+            <strong class="font-bold">Error !</strong>
+            <span class="block sm:inline">{{ session('error') }}</span>
+            <span class="absolute top-0 bottom-0 right-0 px-4 py-3" onclick="this.parentElement.style.display='none';">
+                <svg class="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Tutup</title><path d="M14.348 14.849a1 1 0 01-1.414 0L10 11.914l-2.934 2.935a1 1 0 01-1.414-1.414l2.935-2.934-2.935-2.935a1 1 0 011.414-1.414L10 8.586l2.934-2.935a1 1 0 011.414 1.414l-2.935 2.935 2.935 2.934a1 1 0 010 1.414z"/></svg>
+            </span>
+        </div>
+        @endif
         
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
             @forelse($approval as $approvals)

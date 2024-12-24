@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="../dist/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
-    <title>BWSKAL III | Forgot Password</title>
+    <title>BWSKAL III | Lupa Kata Sandi</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
     <link rel="icon" href="{{ asset('assets\logo/logoPU.png') }}" type="image/x-icon">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -26,13 +26,13 @@
 
                 <!-- Notification Alert for Errors -->
                 @if ($errors->any())
-                    <div class="mb-4 p-4 bg-red-100 border border-red-400 text-red-700 rounded" role="alert">
+                    <div class="mb-2 p-2 bg-red-100 border border-red-400 text-red-700 rounded" role="alert">
                         <strong>Perhatian!</strong> {{ $errors->first() }}
                     </div>
                 @endif
 
                 @if (session('status'))
-                    <div class="mb-4 p-4 bg-green-100 border border-green-400 text-green-700 rounded">
+                    <div class="mb-2 p-2 bg-green-100 border border-green-400 text-green-700 rounded">
                         <strong>Sukses!</strong> {{ session('status') }}
                     </div>
                 @endif
@@ -53,8 +53,9 @@
 
                     <!-- Back to Login Link -->
                     <div class="text-center mt-4">
-                        <a href="{{ route('login') }}" class="text-gray-600 hover:text-gray-800 text-sm">
-                            {{ __('Kembali ke Login') }}
+                        <span class="text-black">Kembali ke</span>
+                        <a href="{{ route('login') }}" class="text-blue-500 font-medium underline hover:text-blue-300">
+                            {{ __('halaman utama') }}
                         </a>
                     </div>
                 </form>

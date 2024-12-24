@@ -64,7 +64,7 @@ class ProfileController extends Controller
         });
 
         // Redirect ke halaman profil dengan pesan sukses
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+        return Redirect::route('profile.edit')->with('profileSuccess', 'data berhasil disimpan');
     }
 
     /**

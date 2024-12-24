@@ -26,13 +26,13 @@
 
                 <!-- Notification Alert for Errors -->
                 @if ($errors->any())
-                    <div class="mb-4 p-4 bg-red-100 border border-red-400 text-red-700 rounded" role="alert">
-                        <strong>Perhatian!</strong> {{ $errors->first() }}
+                    <div class="mb-2 p-2 bg-red-100 border border-red-400 text-red-700 rounded" role="alert">
+                        {{ $errors->first() }}
                     </div>
                 @endif
 
                 @if (session('success'))
-                    <div class="mb-4 p-4 bg-green-100 border border-green-400 text-green-700 rounded">
+                    <div class="mb-2 p-2 bg-green-100 border border-green-400 text-green-700 rounded">
                         <strong>Sukses!</strong> {{ session('success') }}
                     </div>
                 @endif
@@ -42,51 +42,51 @@
 
                      <!-- Display Success Message if available -->
                     @if(session('success'))
-                    <div class="mb-4 text-sm text-green-600">
+                    <div class="mb-2 text-sm text-green-600">
                         {{ session('success') }}
                     </div>
                     @endif
                     {{-- nama --}}
-                    <div class="mb-4 w-full">
+                    <div class="mb-3 w-full">
                         <x-input-label for="name" :value="__('Nama')" class="block text-gray-900 text-lg mb-2"/>
-                        <x-text-input id="name" type="name" name="name" :value="old('name')" required autofocus class="w-full px-3 py-2 border border-gray-300 rounded-lg text-lg focus:outline-none focus:ring-2 focus:ring-gray-400" placeholder="Masukan nama" />
+                        <x-text-input id="name" type="name" name="name" :value="old('name')" required autofocus class="w-full px-2 py-1 border border-gray-300 rounded-lg text-base focus:outline-none focus:ring-1 focus:ring-gray-400" placeholder="Masukan nama" />
                         <x-input-error :messages="$errors->get('name')" class="mt-2" />
                     </div>
 
                     <!-- Email Address -->
-                    <div class="mb-4 w-full">
+                    <div class="mb-3 w-full">
                         <x-input-label for="email" :value="__('Alamat Surel')" class="block text-gray-900 text-lg mb-2"/>
-                        <x-text-input id="email" type="email" name="email" :value="old('email')" required autofocus class="w-full px-3 py-2 border border-gray-300 rounded-lg text-lg focus:outline-none focus:ring-2 focus:ring-gray-400" placeholder="Masukan Alamat Surel" />
+                        <x-text-input id="email" type="email" name="email" :value="old('email')" required autofocus class="w-full px-2 py-1 border border-gray-300 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-gray-400" placeholder="Masukan Alamat Surel" />
                         <x-input-error :messages="$errors->get('email')" class="mt-2" />
                     </div>
 
                     {{-- Phone Number --}}
-                    <div class="mb-4 w-full">
+                    <div class="mb-3 w-full">
                         <x-input-label for="phoneNumber" :value="__('Nomor Telepon (WA)')" class="block text-gray-900 text-lg mb-2"/>
-                        <x-text-input id="phoneNumber" type="text" name="phoneNumber" :value="old('phoneNumber')" required autofocus class="w-full px-3 py-2 border border-gray-300 rounded-lg text-lg focus:outline-none focus:ring-2 focus:ring-gray-400" placeholder="Masukan Nomor Telpon (WA)" />
+                        <x-text-input id="phoneNumber" type="text" name="phoneNumber" :value="old('phoneNumber')" required autofocus class="w-full px-2 py-1 border border-gray-300 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-gray-400" placeholder="Masukan Nomor Telpon (WA)" />
                         <x-input-error :messages="$errors->get('phoneNumber')" class="mt-2" />
                     </div>
 
                     <!-- Password -->
-                    <div class="mb-4 w-full">
+                    <div class="mb-3 w-full">
                         <x-input-label for="password" :value="__('Kata Sandi')" class="block text-gray-900 text-base mb-2"/>
-                        <x-text-input id="password" type="password" name="password" required class="w-full px-3 py-2 border border-gray-300 rounded-lg text-lg focus:outline-none focus:ring-2 focus:ring-gray-400" placeholder="Masukan Password"/>
+                        <x-text-input id="password" type="password" name="password" required class="w-full px-2 py-1 border border-gray-300 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-gray-400" placeholder="Masukan Password"/>
                         <x-input-error :messages="$errors->get('password')" class="mt-2" />
                     </div>
 
                     {{-- konfirmasi kata sandi --}}
-                    <div class="mb-6 w-full">
+                    <div class="mb-4 w-full">
                         <x-input-label for="password_confirmation" :value="__('Konfirmasi Kata Sandi')" class="block text-gray-900 text-sm mb-2"/>
-                        <x-text-input id="password_confirmation" type="password" name="password_confirmation" required class="w-full px-3 py-2 border border-gray-300 rounded-lg text-lg focus:outline-none focus:ring-2 focus:ring-gray-400" placeholder="Masukan konfirmasi kata sandi"/>
+                        <x-text-input id="password_confirmation" type="password" name="password_confirmation" required class="w-full px-2 py-1 border border-gray-300 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-gray-400" placeholder="Masukan konfirmasi kata sandi"/>
                         <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
                     </div>
 
-                    <button type="submit" class="w-full bg-black text-white font-semibold py-3 rounded-lg text-base hover:bg-gray-800 transition duration-500">
+                    <button type="submit" class="w-full bg-black text-white font-semibold py-2 rounded-lg text-sm hover:bg-gray-800 transition duration-500">
                         {{ __('Daftar') }}
                     </button>
 
                     <!-- Login -->
-                    <p class="text-center text-lg mt-4">
+                    <p class="text-center text-base mt-4">
                         Sudah ada akun?
                         <a href="{{ route('login') }}" class="text-blue-600 hover:text-blue-300 underline">
                              {{ __('Masuk') }}

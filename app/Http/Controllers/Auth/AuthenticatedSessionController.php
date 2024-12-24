@@ -24,6 +24,20 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
+        $validated = $request->validate([
+            'email.required' => 'Alamat surel wajib diisi.',
+            'email.email' => 'Alamat surel tidak valid.',
+            'email.exists' => 'Alamat surel tidak terdaftar.',
+            'password.required' => 'Kata sandi wajib diisi.',
+        ]);
+    
+        // Lakukan autentikasi
+        if (!Auth::attempt($validated)) {
+            return back()->withErrors([
+                'email' => 'identitas tidak cocok dengan data kami.',
+            ])->onlyInput('email');
+        }
+
         $request->authenticate();
 
         $request->session()->regenerate();

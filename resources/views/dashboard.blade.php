@@ -75,89 +75,64 @@
 
     <!-- Start Main -->
     <main class="w-full md:w-[calc(100%-256px)] md:ml-64 bg-gray-100 min-h-screen border-l border-gray-100 font-poppins transition-all main">
-        
-        <div class="py-2 px-6 bg-white flex items-center shadow-md shadow-gray-400 sticky top-0 left-0 z-30">
-            <button type="button" class="text-2xl text-gray-600 sidebar-toggle">
-                <i class="ri-menu-line"></i>
-            </button>
-            <ul class="flex items-center text-base ml-4 ">
-                <li class="font-poppins mr-2">
-                    <a href="#" class="text-xl ri-home-2-line hover:text-gray-500">Beranda</a>
-                </li>
-                <li class="mr-2">
-                    <form method="POST" action="{{ route('logout') }}" style="display: none;" id="logout-form">
-                        @csrf
-                    </form>
-                    <a href="logout" class="text-xl ri-logout-box-r-line font-poppins hover:text-gray-500"
-                       onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                        Keluar
-                    </a>
-                </li>
-            </ul>
-            <ul class="ml-auto flex items-center">
-                <li class="mr-2">
-                    <button type="button">
-                        <a href="{{ route('profile.edit') }}">
-                            <img src="{{ 
-                                Auth::user()->avatar 
-                                ? (str_starts_with(Auth::user()->avatar, 'avatar/') 
-                                    ? Storage::url(Auth::user()->avatar) 
-                                    : asset(Auth::user()->avatar)) 
-                                : asset('assets/img/avatar-default.png') }}"  class="w-11 h-11 rounded-full block object-cover align-middle">
-                        </a>
-                    </button>
-                </li>
-            </ul>
-        </div>
+
+        {{--Navigasi--}}
+        @include('components.navigator')
+
+        {{-- Content --}}
+
         @role('client')    
         @if(!$approval || !$approval->proof || !$approval->idNumber)
             <div class="p-6">
-                <h1 class="text-2xl mb-4 font-semibold text-slate-700">
-                    Selamat Datang di Pelayanan Permohonan Data dan Informasi BWSKALIII
-                </h1>
-                <div class="bg-white rounded-md border border-gray-100 p-6 shadow-lg w-80">
-                    <div class="text-xl font-medium text-gray-500 mb-4 text-left">
-                        Lengkapi profil anda untuk melanjutkan permohonan
+                <div class="bg-white rounded-md border border-gray-100 p-6 shadow-lg w-auto">
+                    <h1 class="text-2xl mb-4 font-bold text-slate-700">
+                        Selamat Datang di Pelayanan Permohonan Data dan Informasi BWS KAL III
+                    </h1>
+                    <div class="text-base font-normal mb-4">
+                        Lengkapi profil Anda untuk melanjutkan permohonan. 
+                        <a href="{{route('profile.edit')}}" 
+                        class="underline text-blue-600 hover:text-blue-800 transition duration-200">
+                            Lengkapi Profil
+                        </a>.
                     </div>
-                    <a href="{{route('profile.edit')}}" 
-                       class="block w-auto bg-gray-400 text-gray-800 text-center px-4 py-2 rounded-md shadow hover:bg-gray-600 transition">
-                        Lengkapi Profil
-                    </a>
-                </div>             
+                </div>
             </div>
         @endif
         @endrole
+
         @role('client')    
-            @if($approval && $approval->proof && $approval->idNumber)
-                @if($approval->upload == 1)
-                    <!-- Tampilkan Pilihan Pelayanan -->
-                    <div class="p-6">
-                        <h1 class="text-2xl font-semibold mb-2">Silahkan pilih pelayanan yang tersedia</h1>
-                        <div class="bg-white rounded-md border border-gray-100 p-6 shadow-lg w-96">
-                            <div class="text-lg font-bold text-gray-700">
-                            Permohonan data dan informasi
-                            </div>
-                            <p class="text-sm font-normal mb-4">
-                                Pelayanan yang memudahkan anda untuk mengajukan permohonan data atau permohonan informasi
-                            </p>
+        @if($approval && $approval->proof && $approval->idNumber)
+            @if($approval->upload == 1)
+                <!-- Pilihan Pelayanan -->
+                <div class="p-6">
+                    <div class="bg-white rounded-md border border-gray-100 p-6 shadow-lg w-auto">
+                        <div class="text-lg font-bold text-black">
+                            Permohonan Data dan Informasi
+                        </div>
+                        <p class="text-base font-normal mb-4">
+                            Ajukan permohonan data atau informasi dengan mudah melalui layanan kami. 
                             <a href="{{route('admin.data_requests.index')}}" 
-                            class="block w-auto bg-gray-400 text-gray-800 text-center px-4 py-2 rounded-md shadow hover:bg-gray-600 transition">
-                                Pilih pelayanan
-                            </a>
-                        </div>             
+                            class="underline text-blue-600 hover:text-blue-800 transition duration-200">
+                                Pilih layanan
+                            </a>.
+                        </p>
                     </div>
-                @else
-                    <!-- Tampilkan Status Proses -->
-                    <div class="p-6">
-                        <div class="bg-white rounded-md border border-gray-100 p-6 shadow-lg w-80">
-                            <div class="text-2xl font-medium text-gray-700 text-center">
-                                Data anda sedang diproses oleh pihak bwskaliii
-                            </div>
-                        </div>             
+                </div>
+            @else
+                <!-- Status Proses -->
+                <div class="p-6">
+                    <div class="bg-white rounded-md border border-gray-100 p-6 shadow-lg w-auto">
+                        <div class="text-lg font-medium text-gray-700 text-center">
+                            Data Anda sedang diproses oleh pihak BWS KAL III.
+                        </div>
                     </div>
-                @endif
+                </div>
             @endif
+        @endif
         @endrole
+
+
+        {{-- dashboard admin --}}
         @role('admin|owner')
         <div class="p-6">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -236,6 +211,8 @@
         </div>
         @endrole
     </main>
+
+
     <!-- End Main -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://unpkg.com/@popperjs/core@2"></script>
@@ -243,7 +220,7 @@
     <script>
          // Membuat objek global untuk menyimpan data chart
         const chartData = [];
-
+        // Menyimpan data chart ke dalam objek global
         @foreach($questionsData as $questionKey => $questionData)
             chartData.push({
                 id: '{{ $questionKey }}',

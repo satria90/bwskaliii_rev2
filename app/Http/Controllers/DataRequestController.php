@@ -84,19 +84,19 @@ class DataRequestController extends Controller
     }
 
     public function show($id)
-{
-    // Cari data request berdasarkan ID
-    $dataRequest = DataRequest::findOrFail($id);
+    {
+        // Cari data request berdasarkan ID
+        $dataRequest = DataRequest::findOrFail($id);
 
-    // Periksa apakah data request milik pengguna yang sedang login
-    if ($dataRequest->user_id !== Auth::id()) {
-        // Jika tidak sesuai, redirect atau tampilkan pesan error
-        return redirect()->route('admin.data_requests.index')->with('error', 'Anda tidak memiliki izin untuk mengakses data ini.');
+        // Periksa apakah data request milik pengguna yang sedang login
+        // if ($dataRequest->user_id !== Auth::id()) {
+        //     // Jika tidak sesuai, redirect atau tampilkan pesan error
+        //     return redirect()->route('admin.data_requests.index')->with('error', 'Anda tidak memiliki izin untuk mengakses data ini.');
+        // }
+
+        // Jika ID cocok, tampilkan data
+        return view('admin.data_requests.show', compact('dataRequest'));
     }
-
-    // Jika ID cocok, tampilkan data
-    return view('admin.data_requests.show', compact('dataRequest'));
-}
 
 
     public function edit(DataRequest $dataRequest)

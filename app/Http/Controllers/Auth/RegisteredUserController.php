@@ -41,7 +41,21 @@ class RegisteredUserController extends Controller
             'companyAddress' => 'sometimes|string|max:255',
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        ], [
+            // Pesan Error
+            'name.required' => 'Nama wajib diisi.',
+            'name.string' => 'Nama harus berupa teks.',
+            'password.required' => 'Kata sandi wajib diisi.',
+            'password.confirmed' => 'Konfirmasi kata sandi tidak cocok.',
+            'password.min' => 'Kata sandi minimal harus :min karakter.',
+            'avatar.image' => 'Avatar harus berupa gambar.',
+            'avatar.mimes' => 'Avatar hanya boleh berupa file jpeg, png, atau jpg.',
+            'phoneNumber.required' => 'Nomor telepon wajib diisi.',
+            'email.required' => 'Email wajib diisi.',
+            'email.email' => 'Email tidak valid.',
+            'email.unique' => 'Email ini sudah terdaftar.',
         ]);
+        
         //  proses upload file photo kepada project larvel
         if($request->hasFile('avatar')){
             $avatarPath = $request->file('avatar')->store('avatar','public');

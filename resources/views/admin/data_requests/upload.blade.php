@@ -70,39 +70,7 @@
     <!-- Start Main -->
     <main class="w-full md:w-[calc(100%-256px)] md:ml-64 bg-gray-100 min-h-screen border-l border-gray-100 font-poppins transition-all main">
         <!-- Navbar Start -->
-        <div class="py-2 px-6 bg-white flex items-center shadow-md shadow-gray-400 sticky top-0 left-0 z-30">
-            <button type="button" class="text-2xl text-gray-600 sidebar-toggle">
-                <i class="ri-menu-line"></i>
-            </button>
-            <ul class="flex items-center text-base ml-4 ">
-                <li class="font-poppins mr-2">
-                    <a href="#" class="text-xl ri-home-2-line hover:text-gray-500">Beranda</a>
-                </li>
-                <li class="mr-2">
-                    <form method="POST" action="{{ route('logout') }}" style="display: none;" id="logout-form">
-                        @csrf
-                    </form>
-                    <a href="logout" class="text-xl ri-logout-box-r-line font-poppins hover:text-gray-500"
-                       onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                        Keluar
-                    </a>
-                </li>
-            </ul>
-            <ul class="ml-auto flex items-center">
-                <li class="mr-2">
-                    <button type="button">
-                        <a href="{{ route('profile.edit') }}">
-                            <img src="{{ 
-                                Auth::user()->avatar 
-                                ? (str_starts_with(Auth::user()->avatar, 'avatar/') 
-                                    ? Storage::url(Auth::user()->avatar) 
-                                    : asset(Auth::user()->avatar)) 
-                                : asset('assets/img/avatar-default.png') }}"  class="w-11 h-11 rounded-full block object-cover align-middle">
-                        </a>
-                    </button>
-                </li>
-            </ul>
-        </div>
+        @include('components.navigator')
         <!-- Navbar End -->
 
         <!-- Konten -->
@@ -114,8 +82,9 @@
                     <fieldset>
                         <h1 class="text-2xl font-bold mb-6">Pengajuan Permohonan dan Informasi</h1>
                         <p class="mb-3 text-lg font-semibold text-gray-500 after:content-['*'] after:ml-0.5 after:text-red-500">Silahkan Pilih Permohonan dan Informasi</p>
-        
-                        <div class="mb-3">
+                        
+                        {{-- dropdown 1 Perizinan SDA --}}
+                        {{-- <div class="mb-3">
                             <button
                                 type="button"
                                 class="w-full flex justify-between items-center bg-gray-100 px-4 py-2 text-left rounded-md shadow focus:outline-none focus:ring focus:ring-blue-300"
@@ -146,10 +115,10 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>                        
+                        </div>                         --}}
         
                         <!-- Dropdown 2 -->
-                        <div class="mb-3">
+                        {{-- <div class="mb-3">
                             <button type="button" class="w-full flex justify-between items-center bg-gray-100 px-4 py-2 text-left rounded-md shadow focus:outline-none focus:ring focus:ring-blue-300"
                                 onclick="toggleCollapse('dropdown2')">
                                 <span class="font-bold text-slate-700">Permohonan Surat Keterangan Ketersediaan Air & Rekomendasi Teknis Galian C</span>
@@ -174,7 +143,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
 
 
                         <!-- Dropdown 3 -->
@@ -236,54 +205,55 @@
                             </div>
                         </div>
 
-                            <!-- Dropdown 4 -->
-                            <div class="mb-3">
-                                <button type="button" class="w-full flex justify-between items-center bg-gray-100 px-4 py-2 text-left rounded-md shadow focus:outline-none focus:ring focus:ring-blue-300" onclick="toggleCollapse('dropdown4')">
-                                    <span class="font-bold text-slate-700">Permohonan Peminjaman Sarana Prasarana BWS Kalimantan III Banjarmasin</span>
-                                    <i id="icon-dropdown4" class="ri-arrow-down-s-line text-slate-700 transition-transform"></i>
-                                </button>
-                                <div id="dropdown4" class="dropdown-content mt-4">
-                                    <!-- Label untuk upload file -->
-                                    <label for="fileDataPeminjaman" class="block mb-2 text-sm font-poppins text-slate-700">
-                                        Upload surat permohonan
-                                    </label>
-                                    <input type="file" id="fileDataPeminjaman" name="fileDataPeminjaman" class="block w-full mb-4 border border-gray-300 rounded-md p-2 text-sm text-slate-700">
+                        <!-- Dropdown 4 -->
+                        {{-- <div class="mb-3">
+                            <button type="button" class="w-full flex justify-between items-center bg-gray-100 px-4 py-2 text-left rounded-md shadow focus:outline-none focus:ring focus:ring-blue-300" onclick="toggleCollapse('dropdown4')">
+                                <span class="font-bold text-slate-700">Permohonan Peminjaman Sarana Prasarana BWS Kalimantan III Banjarmasin</span>
+                                <i id="icon-dropdown4" class="ri-arrow-down-s-line text-slate-700 transition-transform"></i>
+                            </button>
+                            <div id="dropdown4" class="dropdown-content mt-4">
+                                <!-- Label untuk upload file -->
+                                <label for="fileDataPeminjaman" class="block mb-2 text-sm font-poppins text-slate-700">
+                                    Upload surat permohonan
+                                </label>
+                                <input type="file" id="fileDataPeminjaman" name="fileDataPeminjaman" class="block w-full mb-4 border border-gray-300 rounded-md p-2 text-sm text-slate-700">
 
-                                    <!-- Label untuk textarea -->
-                                    <div>
-                                    <label class="block text-sm font-poppins" for="">Pilih sarana prasarana</label>
-                                    </div>
-                                    <div class="flex items-center mt-3">
-                                        <input {{ $dataRequest->Tools == 1 ? 'checked' : '' }} type="checkbox" id="Tools" name="Tools" value="1" class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
-                                        <label for="Tools" class="ml-2 font-poppins text-sm text-slate-700">Alat</label>
-                                    </div>
-                                    <div class="flex items-center mt-3">
-                                        <input {{ $dataRequest->PumpsEquipment == 1 ? 'checked' : '' }} type="checkbox" id="PumpsEquipment" name="PumpsEquipment" value="1" class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
-                                        <label for="PumpsEquipment" class="ml-2 font-poppins text-sm text-slate-700">Pompa dan Alat Berat</label>
-                                    </div>
+                                <!-- Label untuk textarea -->
+                                <div>
+                                <label class="block text-sm font-poppins" for="">Pilih sarana prasarana</label>
+                                </div>
+                                <div class="flex items-center mt-3">
+                                    <input {{ $dataRequest->Tools == 1 ? 'checked' : '' }} type="checkbox" id="Tools" name="Tools" value="1" class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
+                                    <label for="Tools" class="ml-2 font-poppins text-sm text-slate-700">Alat</label>
+                                </div>
+                                <div class="flex items-center mt-3">
+                                    <input {{ $dataRequest->PumpsEquipment == 1 ? 'checked' : '' }} type="checkbox" id="PumpsEquipment" name="PumpsEquipment" value="1" class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
+                                    <label for="PumpsEquipment" class="ml-2 font-poppins text-sm text-slate-700">Pompa dan Alat Berat</label>
                                 </div>
                             </div>
+                        </div> --}}
 
-                           <!-- Dropdown 5 -->
-                            <div class="mb-3">
-                                <button type="button" class="w-full flex justify-between items-center bg-gray-100 px-4 py-2 text-left rounded-md shadow focus:outline-none focus:ring focus:ring-blue-300" onclick="toggleCollapse('dropdown5')">
-                                    <span class="font-bold text-slate-700">Pengaduan Masyarakat</span>
-                                    <i id="icon-dropdown5" class="ri-arrow-down-s-line text-slate-700 transition-transform"></i>
-                                </button>
-                                <div id="dropdown5" class="dropdown-content mt-4">
-                                    <!-- Label untuk upload file -->
-                                    <label for="fileDataPengaduan" class="block mb-2 text-sm font-poppins text-slate-700">
-                                        Upload surat pengaduan
-                                    </label>
-                                    <input type="file" id="fileDataPengaduan" name="fileDataPengaduan" class="block w-full mb-4 border border-gray-300 rounded-md p-2 text-sm text-slate-700">
+                        {{-- <!-- Dropdown 5 -->
+                        <div class="mb-3">
+                            <button type="button" class="w-full flex justify-between items-center bg-gray-100 px-4 py-2 text-left rounded-md shadow focus:outline-none focus:ring focus:ring-blue-300" onclick="toggleCollapse('dropdown5')">
+                                <span class="font-bold text-slate-700">Pengaduan Masyarakat</span>
+                                <i id="icon-dropdown5" class="ri-arrow-down-s-line text-slate-700 transition-transform"></i>
+                            </button>
+                            <div id="dropdown5" class="dropdown-content mt-4">
+                                <!-- Label untuk upload file -->
+                                <label for="fileDataPengaduan" class="block mb-2 text-sm font-poppins text-slate-700">
+                                    Upload surat pengaduan
+                                </label>
+                                <input type="file" id="fileDataPengaduan" name="fileDataPengaduan" class="block w-full mb-4 border border-gray-300 rounded-md p-2 text-sm text-slate-700">
 
-                                    <!-- Label untuk textarea -->
-                                    <label for="Information" class="block mb-2 text-sm font-poppins text-slate-700">
-                                        Keterangan
-                                    </label>
-                                    <textarea value="{{ $dataRequest->Information }}" id="Information" name="Information" rows="4" class="block w-full border border-gray-300 rounded-md p-2 text-sm text-slate-700"></textarea>
-                                </div>
+                                <!-- Label untuk textarea -->
+                                <label for="Information" class="block mb-2 text-sm font-poppins text-slate-700">
+                                    Keterangan
+                                </label>
+                                <textarea value="{{ $dataRequest->Information }}" id="Information" name="Information" rows="4" class="block w-full border border-gray-300 rounded-md p-2 text-sm text-slate-700"></textarea>
                             </div>
+                        </div> --}}
+
                         <label class="block mb-6">
                             <span class="mb-2 after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-poppins text-slate-700">
                                 Rincian Informasi yang Dibutuhkan
@@ -316,33 +286,43 @@
                             <input type="file" required id="fileDataRequest" name="fileDataRequest" class="mt-1 px-3 py-2 bg-gray-100 border shadow-sm border-slate-200 placeholder-gray-400 focus:outline-none focus:border-gray-300 focus:ring-gray-300 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Upload file Diminta" />
                         </label>
 
-                        <div class="flex space-x-2 mb-8">
-                            <!-- Diterima Button -->
-                            <label>
-                                <input 
-                                    type="radio" 
-                                    name="Status" 
-                                    value="diterima" 
-                                    class="hidden peer" 
-                                    {{ old('Status', $dataRequest->Status ?? '') == 'diterima' ? 'checked' : '' }}>
-                                <span class="px-4 py-2 rounded-md cursor-pointer peer-checked:bg-yellow-500 peer-checked:text-white hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-blue-300">
-                                    Diterima
+                        <div class="flex flex-col space-y-4 mb-8">
+                            <label class="block">
+                                <span class="mb-2 mt-2 after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-poppins text-slate-700">
+                                    Status
                                 </span>
-                            </label>
-                            
-                            <!-- Ditolak Button -->
-                            <label>
-                                <input 
-                                    type="radio" 
-                                    name="Status" 
-                                    value="ditolak" 
-                                    class="hidden peer" 
-                                    {{ old('Status', $dataRequest->Status ?? '') == 'ditolak' ? 'checked' : '' }}>
-                                <span class="px-4 py-2 rounded-md cursor-pointer peer-checked:bg-red-500 peer-checked:text-white hover:bg-yellow-100 focus:outline-none focus:ring-2 focus:ring-yellow-300">
-                                    Ditolak
-                                </span>
+                                <div class="flex space-x-4 mt-2">
+                                    <!-- Diterima Button -->
+                                    <label class="flex items-center">
+                                        <input 
+                                            type="radio" 
+                                            name="Status" 
+                                            value="diterima" 
+                                            class="hidden peer" 
+                                            {{ old('Status', $dataRequest->Status ?? '') == 'diterima' ? 'checked' : '' }}
+                                        >
+                                        <span class="border-2 border-gray-300 text-gray-500 px-4 py-2 rounded-md cursor-pointer peer-checked:bg-green-500 peer-checked:text-white hover:bg-green-100 focus:outline-none focus:ring-2 focus:ring-green-300">
+                                            Terima
+                                        </span>
+                                    </label>
+                        
+                                    <!-- Ditolak Button -->
+                                    <label class="flex items-center">
+                                        <input 
+                                            type="radio" 
+                                            name="Status" 
+                                            value="ditolak" 
+                                            class="hidden peer" 
+                                            {{ old('Status', $dataRequest->Status ?? '') == 'ditolak' ? 'checked' : '' }}
+                                        >
+                                        <span class="border-2 border-gray-300 px-4 py-2 text-gray-500 rounded-md cursor-pointer peer-checked:bg-red-500 peer-checked:text-white hover:bg-red-100 focus:outline-none focus:ring-2 focus:ring-red-300">
+                                            Tolak
+                                        </span>
+                                    </label>
+                                </div>
                             </label>
                         </div>
+                        
                         
                         <button type="submit" class="font-bold w-20 h-10 mt-1 px-3 py-2 bg-blue-800 border shadow-sm border-blue-800 block rounded-md sm:text-sm text-white hover:bg-blue-900 hover:text-white">
                             Update
