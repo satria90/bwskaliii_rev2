@@ -172,6 +172,7 @@
                     }
                 }
             });
+            $('#myTable').DataTable.ext.errMode = 'none'
         });
     </script>
 </body>

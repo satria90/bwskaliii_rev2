@@ -1,11 +1,17 @@
 <div class="py-3 px-7 bg-white flex items-center shadow-md shadow-gray-400 sticky top-0 left-0 z-30">
+    <!-- Sidebar Toggle Button -->
     <button type="button" class="text-3xl mr-2 text-gray-600 sidebar-toggle">
         <i class="ri-menu-line"></i>
     </button>
-    <ul class="flex items-center text-base ml-1 ">
-        <li class="font-poppins mr-2">
+
+    <!-- Navbar Links (Hidden on sm and below) -->
+    <ul class="flex items-center text-base ml-1">
+        <!-- Beranda Link (Visible only on md and above) -->
+        <li class="font-poppins mr-2 hidden sm:block">
             <a href="{{ route('dashboard') }}" class="text-2xl ri-home-2-line hover:text-gray-500">Beranda</a>
         </li>
+
+        <!-- Logout Link -->
         <li class="mr-2 ml-2">
             <form method="POST" action="{{ route('logout') }}" style="display: none;" id="logout-form">
                 @csrf
@@ -16,6 +22,8 @@
             </a>
         </li>
     </ul>
+
+    <!-- User Profile Picture -->
     <ul class="ml-auto flex items-center">
         <li class="mr-2">
             <button type="button">

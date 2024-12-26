@@ -31,11 +31,11 @@ class AuthenticatedSessionController extends Controller
             'password.required' => 'Kata sandi wajib diisi.',
         ]);
     
-        // Lakukan autentikasi
-        if (!Auth::attempt($validated)) {
-            return back()->withErrors([
-                'email' => 'identitas tidak cocok dengan data kami.',
-            ])->onlyInput('email');
+        $credentials = $request->only('email', 'password');
+        if (!Auth::attempt($credentials)) {
+            return redirect()->route('login')->withErrors([
+                'email' => 'Email atau password yang anda masukkan salah',
+            ])->withInput(); // Mengembalikan input ke form login
         }
 
         $request->authenticate();

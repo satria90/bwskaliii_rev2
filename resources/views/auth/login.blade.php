@@ -16,23 +16,23 @@
     <div class="flex items-center justify-center h-screen">
         <div class="bg-white shadow-2xl h-full w-full flex flex-col md:flex-row">
             <!-- Left Side (Form) -->
-            <div class="w-full md:w-1/2 p-8 md:p-16 flex flex-col justify-center">
+            <div class="w-full md:w-1/2 p-8 md:p-20 flex flex-col justify-center">
                 <div class="flex flex-col items-center mb-5">
-                    <!-- Logo -->
-                    <img src="{{ asset('assets\logo/logo lama.png') }}" alt="Logo PUPR" class="h-24 mb-3" />
+                    <!-- Logo (Only visible on md and up) -->
+                    <img src="{{ asset('assets\logo/logo lama.png') }}" alt="Logo PUPR" class="h-24 mb-3 hidden sm:block" />
                     <h2 class="text-5xl font-medium text-gray-700 mb-2">Selamat Datang</h2>
                     <p class="text-gray-500 text-lg">Pelayanan Balai Wilayah Sungai Kalimantan III</p>
                 </div>
 
                 <!-- Notification Alert for Errors -->
                 @if ($errors->any())
-                    <div class="mb-4 p-4 bg-red-100 border border-red-400 text-red-700 rounded" role="alert">
-                        <strong>Perhatian!</strong> {{ $errors->first() }}
+                    <div class="mb-2 p-2 bg-red-100 border border-red-400 text-red-700 rounded" role="alert">
+                        {{ $errors->first() }}
                     </div>
                 @endif
 
                 @if (session('success'))
-                    <div class="mb-4 p-4 bg-green-100 border border-green-400 text-green-700 rounded">
+                    <div class="mb-2 p-2 bg-green-100 border border-green-400 text-green-700 rounded">
                         <strong>Sukses!</strong> {{ session('success') }}
                     </div>
                 @endif
@@ -40,12 +40,13 @@
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
 
-                     <!-- Display Success Message if available -->
-                    @if(session('status'))
-                    <div class="mb-4 text-sm text-green-600">
-                        {{ session('status') }}
+                    <!-- Display Success Message if available -->
+                    @if(session('success'))
+                    <div class="mb-2 text-sm text-green-600">
+                        {{ session('success') }}
                     </div>
                     @endif
+
                     <!-- Email Address -->
                     <div class="mb-6 w-full">
                         <x-input-label for="email" :value="__('Alamat Surel')" class="text-blue-500 text-xl mb-4"/>
@@ -84,14 +85,13 @@
                 <div class="swiper mySwiper h-full">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
-                            {{-- {{ asset('assets\logo/logo lama.png') }} --}}
                             <img src="{{ asset('assets/img/depan.jpeg') }}" alt="Mountain Image" class="w-full h-full object-cover" />
                         </div>
                         <div class="swiper-slide">
-                            <img src="{{ asset('assets\img/plang.jpeg') }}" alt="Forest Image" class="w-full h-full object-cover" />
+                            <img src="{{ asset('assets/img/plang.jpeg') }}" alt="Forest Image" class="w-full h-full object-cover" />
                         </div>
                         <div class="swiper-slide">
-                            <img src="{{ asset('assets\img/BatikPU.jpeg') }}" alt="Beach Image" class="w-full h-full object-cover" />
+                            <img src="{{ asset('assets/img/BatikPU.jpeg') }}" alt="Beach Image" class="w-full h-full object-cover" />
                         </div>
                     </div>
                     <!-- Add Pagination -->

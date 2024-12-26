@@ -14,12 +14,12 @@
 </head>
 <body class="bg-gray-100">
     <div class="flex items-center justify-center h-screen">
-        <div class="bg-white shadow-2xl h-full w-full flex flex-col md:flex-row">
+        <div class="bg-white shadow-2xl min-h-screen w-full flex flex-col md:flex-row">
             <!-- Left Side (Form) -->
             <div class="w-full md:w-1/2 p-8 md:p-20 flex flex-col justify-center">
                 <div class="flex flex-col items-center mb-5">
-                    <!-- Logo -->
-                    <img src="{{ asset('assets\logo/logo lama.png') }}" alt="Logo PUPR" class="h-24 mb-3" />
+                    <!-- Logo (Only visible on md and up) -->
+                    <img src="{{ asset('assets\logo/logo lama.png') }}" alt="Logo PUPR" class="h-24 mb-3 hidden sm:block" />
                     <h2 class="text-5xl font-medium text-gray-700 mb-2">Selamat Datang</h2>
                     <p class="text-gray-500 text-lg">Pelayanan Balai Wilayah Sungai Kalimantan III</p>
                 </div>
@@ -40,12 +40,13 @@
                 <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                     @csrf
 
-                     <!-- Display Success Message if available -->
+                    <!-- Display Success Message if available -->
                     @if(session('success'))
                     <div class="mb-2 text-sm text-green-600">
                         {{ session('success') }}
                     </div>
                     @endif
+
                     {{-- nama --}}
                     <div class="mb-3 w-full">
                         <x-input-label for="name" :value="__('Nama')" class="block text-gray-900 text-lg mb-2"/>
@@ -96,18 +97,17 @@
             </div>
 
             <!-- Right Side (Swiper Slider for Image) -->
-            <div class="w-full md:w-1/2 bg-black hidden md:block relative">
+            <div class="w-full md:w-1/2 bg-black hidden sm:block relative">
                 <div class="swiper mySwiper h-full">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
-                            {{-- {{ asset('assets\logo/logo lama.png') }} --}}
                             <img src="{{ asset('assets/img/depan.jpeg') }}" alt="Mountain Image" class="w-full h-full object-cover" />
                         </div>
                         <div class="swiper-slide">
-                            <img src="{{ asset('assets\img/plang.jpeg') }}" alt="Forest Image" class="w-full h-full object-cover" />
+                            <img src="{{ asset('assets/img/plang.jpeg') }}" alt="Forest Image" class="w-full h-full object-cover" />
                         </div>
                         <div class="swiper-slide">
-                            <img src="{{ asset('assets\img/BatikPU.jpeg') }}" alt="Beach Image" class="w-full h-full object-cover" />
+                            <img src="{{ asset('assets/img/BatikPU.jpeg') }}" alt="Beach Image" class="w-full h-full object-cover" />
                         </div>
                     </div>
                     <!-- Add Pagination -->

@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreApprovalRequest;
 use App\Models\approval;
+use App\Notifications\AccountVerifiedNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Notification;
 
 class ApprovalController extends Controller
 {
@@ -93,15 +95,19 @@ class ApprovalController extends Controller
      */
     public function update(Request $request, approval $approval)
     {
-        //
-        DB::transaction(function () use ($approval){
+        DB::transaction(function () use ($approval) {
+         
             $approval->update([
-                'upload'=>true,
-                'approval_start_date'=> Carbon::now()
+                'upload' => true,
+                'approval_start_date' => Carbon::now(),
             ]);
+    
+           
+            $user = $approval->user; 
+    
+            // Kirimkan notifikasi kepada pengguna
+            Notification::send($user, new AccountVerifiedNotification());
         });
-
-        return redirect()->route("admin.approvals.show",$approval);
     }
 
     /**

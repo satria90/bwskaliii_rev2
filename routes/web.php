@@ -9,9 +9,12 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SurveyController;
 use Illuminate\Support\Facades\Route;
 
+
 Route::get('/', function () {
     return redirect()->route('login');
 });
+
+Route::get('/survey/export-excel', [SurveyController::class, 'export_excel'])->name('survey.export-excel')->middleware('role:admin|owner');
 
 
 Route::middleware('auth')->group(function () {

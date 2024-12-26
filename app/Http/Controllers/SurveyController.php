@@ -8,6 +8,8 @@ use App\Models\Survey;
 use Illuminate\Container\Attributes\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Exports\ExportUser;
+use Excel;
 
 class SurveyController extends Controller
 {
@@ -18,6 +20,21 @@ class SurveyController extends Controller
     {
         //
         
+    }
+
+public function jumlahSurvey()
+{
+    // Menghitung jumlah survey
+    $totalRequests = Survey::count(); // Menghitung jumlah total survey
+
+    // Kirimkan $totalRequests ke view
+    return view('dashboard', compact('totalRequests')); // Pastikan nama view sesuai
+}
+
+
+    public function export_excel()
+    {
+        return Excel::download(new ExportUser, 'survey.xlsx');
     }
 
     /**
