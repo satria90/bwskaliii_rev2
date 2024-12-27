@@ -4,15 +4,18 @@ namespace App\Notifications;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Support\Facades\Auth;
 
 class AccountVerifiedNotification extends Notification
 {
     use Queueable;
 
+    protected $user;
+
     public function __construct()
     {
-        // Anda bisa menambahkan data yang perlu dikirimkan ke notifikasi ini.
-    }
+        $this->user = $user; // Anda bisa menambahkan data yang perlu dikirimkan ke notifikasi ini.
+    }       
 
     public function via($notifiable)
     {
@@ -21,10 +24,13 @@ class AccountVerifiedNotification extends Notification
 
     public function toMail($notifiable)
     {
-        return (new MailMessage)
-                    ->subject('Akun Anda Telah Diverifikasi')
-                    ->line('Kami ingin memberitahukan bahwa akun Anda telah berhasil diverifikasi dan siap digunakan.')
-                    ->action('Login', url('/login'))  // Menambahkan tautan untuk login
-                    ->line('Terima kasih telah menggunakan layanan kami!');
+        $data = [
+        'name' => $this->user->name,
+        'loginUrl' => url('http://127.0.0.1:8000/login'), // Ganti dengan URL login aplikasi Anda
+    ];
+
+    return (new MailMessage)
+        ->view('email.notif', $data)
+        ->subject('Akun Anda Telah Diverifikasi');
     }
 }

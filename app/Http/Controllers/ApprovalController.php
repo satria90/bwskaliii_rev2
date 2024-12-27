@@ -107,7 +107,10 @@ class ApprovalController extends Controller
     
             // Kirimkan notifikasi kepada pengguna
             Notification::send($user, new AccountVerifiedNotification());
+
         });
+        return redirect()->route('approvals.show');
+
     }
 
     /**
