@@ -42,6 +42,12 @@ class ApprovalController extends Controller
     DB::transaction(function () use($request, $user) {
         $validated = $request->validated();
 
+        // cek admin approval
+        if ($request->hasFile('adminApproval')) {
+            $adminApprovalPath = $request->file('adminApproval')->store('admin-approval', 'public');
+            $validated['adminApproval'] = $adminApprovalPath;
+        }
+
         // Cek apakah file proof diunggah
         if ($request->hasFile('proof')) {
             $proofPath = $request->file('proof')->store('proof', 'public');
@@ -96,21 +102,20 @@ class ApprovalController extends Controller
     public function update(Request $request, approval $approval)
     {
         DB::transaction(function () use ($approval) {
-         
+            // Update approval
             $approval->update([
                 'upload' => true,
                 'approval_start_date' => Carbon::now(),
             ]);
-    
-           
+
+            // Ambil user yang terkait dengan approval ini
             $user = $approval->user; 
-    
+
             // Kirimkan notifikasi kepada pengguna
-            Notification::send($user, new AccountVerifiedNotification());
-
+            $user->notify(new AccountVerifiedNotification($user));  // Kirim objek user ke konstruktor
         });
-        return redirect()->route('approvals.show');
 
+        return redirect()->route('admin.approvals.show', $approval)->with('success', 'Approval telah diperbarui dan notifikasi terkirim.');
     }
 
     /**

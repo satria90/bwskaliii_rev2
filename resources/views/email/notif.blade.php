@@ -12,14 +12,14 @@
     <p>Silakan klik tombol di bawah ini untuk login:</p>
 
     <p style="text-align: center;">
-        <a href="{{ $loginUrl }}" style="background-color: #4CAF50; color: white; padding: 10px 15px; text-decoration: none; border-radius: 5px; font-weight: bold;">
+        <a href="{{ $loginUrl }}" style="background-color: #0206ff; color: white; padding: 10px 15px; text-decoration: none; border-radius: 5px; font-weight: bold;">
             Login ke Akun Saya
         </a>
     </p>
 
     <p>Terima kasih telah bergabung dengan layanan kami!</p>
 
-    <p>Salam hangat,</p>
-    <p><strong>Tim Anda</strong></p>
+    <p>Salam,</p>
+    <p><strong>BWS KALIMANTAN III</strong></p>
 </body>
 </html>

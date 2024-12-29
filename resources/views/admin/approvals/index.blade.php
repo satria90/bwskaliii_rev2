@@ -152,6 +152,7 @@
                         next: "Berikutnya"
                     }
                 }
+                
             });
         });
     </script>

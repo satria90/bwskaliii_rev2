@@ -14,7 +14,8 @@
 </head>
 <body class="bg-gray-100">
     <div class="flex items-center justify-center h-screen">
-        <div class="bg-white shadow-2xl min-h-screen w-full flex flex-col md:flex-row">
+        <div class="bg-white shadow-2xl min-h-auto w-full flex flex-col md:flex-row">
+
             <!-- Left Side (Form) -->
             <div class="w-full md:w-1/2 p-8 md:p-20 flex flex-col justify-center">
                 <div class="flex flex-col items-center mb-5">

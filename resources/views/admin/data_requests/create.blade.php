@@ -163,6 +163,7 @@
                                 <span class="font-bold text-slate-700">Permohonan Data dan Informasi SDA</span>
                                 <i id="icon-dropdown1" class="ri-arrow-down-s-line text-slate-700 transition-transform"></i>
                             </button>
+                            
                             <div id="dropdown3" class="dropdown-content mt-4">
                                 <label for="fileDataSda" class="block mb-2 text-sm font-poppins text-slate-700">
                                     Upload surat permohonan
@@ -265,9 +266,11 @@
                             </div> --}}
         
                             <label class="block mb-6">
-                                <span class="mb-2 after:content-['*'] after:ml-0.5 after:text-red-500 block text-lg font-poppins text-gray-500 font-semibold">
+                                <span class="block text-lg font-poppins font-semibold text-gray-500 mb-2">
                                     Rincian Informasi yang Dibutuhkan
+                                    <span class="text-red-500 ml-1">*</span>
                                 </span>
+                                <small class="block text-sm text-gray-400">Jika Tidak Ada, isi dengan tanda "-"</small>
                                 <input type="text" required id="requiredInformation" name="requiredInformation" class="mt-1 px-3 py-2 bg-gray-100 border shadow-sm border-slate-200 placeholder-gray-400 focus:outline-none focus:border-gray-300 focus:ring-gray-300 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Masukkan Rincian Informasi yang Dibutuhkan" />
                             </label>
             
@@ -275,6 +278,7 @@
                                 <span class="mb-2 after:content-['*'] after:ml-0.5 after:text-red-500 block text-lg font-semibold font-poppins text-gray-500">
                                     Tujuan Penggunaan Informasi
                                 </span>
+                                <small class="block text-sm text-gray-400">Jika Tidak Ada, isi dengan tanda "-"</small>
                             </label>
             
                             <div class="space-y-2 mb-6">

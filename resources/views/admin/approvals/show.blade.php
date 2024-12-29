@@ -62,7 +62,7 @@
             <h1 class="font-poppins font-bold text-xl">Kelola Data Pemohon</h1>
             <p class="font-poppins text-gray-400">Diharapkan  memverifikasi dengan benar</p>
         </div>
-        <main class="flex-grow container mx-auto px-6 py-4">
+        <main class="flex-grow container mx-auto px-6 py-1">
             <div class="bg-white rounded-md border border-gray-100 shadow-md">
                 <!-- Title Section -->
                 {{-- <div class="bg-blue-700 text-white p-4 rounded-b-md">
@@ -135,7 +135,7 @@
 
                             <tr class="">
                                 <td class=" px-4 py-2 font-semibold text-gray-700">Nama Lengkap</td>
-                                <td class=" px-4 py-2 text-gray-600">{{ $approval->user->name }}</td>
+                                <td class=" px-4 py-2 text-gray-600">{{ $approval->fullName }}</td>
                             </tr>
                             <!-- Baris 2 -->
                             <tr class="bg-white">
@@ -150,22 +150,22 @@
                             
                             <tr class="">
                                 <td class=" px-4 py-2 font-semibold text-gray-700">Alamat</td>
-                                <td class=" px-4 py-2 text-gray-600">{{ $approval->user->homeAddress }}</td>
+                                <td class=" px-4 py-2 text-gray-600">{{ $approval->homeAddress }}</td>
                             </tr>
 
                             <tr class="bg-white">
                                 <td class=" px-4 py-2 font-semibold text-gray-700">Pekerjaan</td>
-                                <td class=" px-4 py-2 text-gray-600">{{ $approval->user->occupation }}</td>
+                                <td class=" px-4 py-2 text-gray-600">{{ $approval->occupation }}</td>
                             </tr>
 
                             <tr class="bg-white">
                                 <td class=" px-4 py-2 font-semibold text-gray-700">Nama Perusahaan</td>
-                                <td class=" px-4 py-2 text-gray-600">{{ $approval->user->companyName }}</td>
+                                <td class=" px-4 py-2 text-gray-600">{{ $approval->companyName }}</td>
                             </tr>
 
                             <tr class="bg-white">
                                 <td class=" px-4 py-2 font-semibold text-gray-700">Alamat Perusahaan</td>
-                                <td class=" px-4 py-2 text-gray-600">{{ $approval->user->companyAddress }}</td>
+                                <td class=" px-4 py-2 text-gray-600">{{ $approval->companyAddress }}</td>
                             </tr>
 
                             <!-- Baris 3 -->
@@ -173,6 +173,15 @@
                                 <td class="px-4 py-2 font-semibold text-gray-700">Kartu Identitas (KTP)</td>
                                 <td class="px-4 py-2 text-gray-600">
                                     <a href="{{ Storage::url($approval->proof) }}" target="_blank" class="text-blue-500 hover:underline">
+                                        Lihat File
+                                    </a>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="px-4 py-2 font-semibold text-gray-700">Bukti Chat Admin</td>
+                                <td class="px-4 py-2 text-gray-600">
+                                    <a href="{{ Storage::url($approval->adminApproval) }}" target="_blank" class="text-blue-500 hover:underline">
                                         Lihat File
                                     </a>
                                 </td>
@@ -196,7 +205,7 @@
                     @if($approval->upload)
                     Sudah Terverifikasi
                     @else
-                    <hr class="my-5">
+                    <hr class="my-2">
                     <form action="{{ route('admin.approvals.update', $approval) }}" method="POST">
                         @csrf
                         @method('put')

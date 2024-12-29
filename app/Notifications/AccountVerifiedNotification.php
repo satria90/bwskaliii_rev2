@@ -12,10 +12,10 @@ class AccountVerifiedNotification extends Notification
 
     protected $user;
 
-    public function __construct()
+    public function __construct($user)
     {
-        $this->user = $user; // Anda bisa menambahkan data yang perlu dikirimkan ke notifikasi ini.
-    }       
+        $this->user = $user; // Menyimpan objek user yang akan diverifikasi
+    }     
 
     public function via($notifiable)
     {

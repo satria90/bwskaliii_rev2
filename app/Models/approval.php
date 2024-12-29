@@ -16,7 +16,13 @@ class approval extends Model
         'proof',
         'upload',
         'idNumber',
-        'approval_start_date'
+        'approval_start_date',
+        'fullName',
+        'homeAddress',
+        'occupation',
+        'companyName',
+        'companyAddress',
+        'adminApproval',
     ];
 
     public function user(){

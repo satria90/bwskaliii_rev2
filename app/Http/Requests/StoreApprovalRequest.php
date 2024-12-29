@@ -24,7 +24,13 @@ class StoreApprovalRequest extends FormRequest
         return [
             //
             'idNumber' => ['required','string','max:16'],
-            'proof'=>['required','image','mimes:png,jpg,jpeg']
+            'proof'=>['required','image','mimes:png,jpg,jpeg'],
+            'fullName' => ['required','string','max:255'],
+            'homeAddress' => ['required','string','max:255'],
+            'occupation' => ['required','string','max:255'],
+            'companyName' => ['required','string','max:255'],
+            'companyAddress' => ['required','string','max:255'],
+            'adminApproval' => ['required','image','mimes:png,jpg,jpeg'],
         ];
     }
 }

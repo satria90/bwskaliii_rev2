@@ -24,12 +24,13 @@ class User extends Authenticatable implements MustVerifyEmail
         'email',
         'password',
         'avatar',
-        'fullName',
-        'homeAddress',
         'phoneNumber',
-        'occupation',
-        'companyName',
-        'companyAddress',
+        //yang di komen dipindahkan ke approval
+        // 'fullName',
+        // 'homeAddress',
+        // 'occupation',
+        // 'companyName',
+        // 'companyAddress',
     ];
 
     /**

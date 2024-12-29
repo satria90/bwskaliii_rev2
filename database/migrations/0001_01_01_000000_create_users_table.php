@@ -13,14 +13,15 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('fullName')->nullable();
+            //yang di komen dipindah ke migration approval
+            //$table->string('fullName')->nullable();
+            //$table->string('homeAddress')->nullable();
+            //$table->string('occupation')->nullable();
+            //$table->string('companyName')->nullable();
+            //$table->string('companyAddress')->nullable();
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('homeAddress')->nullable();
             $table->string('phoneNumber')->nullable();
-            $table->string('occupation')->nullable();
-            $table->string('companyName')->nullable();
-            $table->string('companyAddress')->nullable();
             $table->string('avatar')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

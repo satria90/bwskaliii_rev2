@@ -31,14 +31,14 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'fullName' => 'sometimes|string|max:255',
+            // 'fullName' => 'sometimes|string|max:255',
             'password' => 'required|string|confirmed|min:8',
             'avatar' => 'sometimes|image|mimes:jpeg,png,jpg',
-            'homeAddress' => 'sometimes|string|max:255',
+            // 'homeAddress' => 'sometimes|string|max:255',
             'phoneNumber' => 'required|string|max:15',
-            'occupation' => 'sometimes|string|max:255',
-            'companyName' => 'sometimes|string|max:255',
-            'companyAddress' => 'sometimes|string|max:255',
+            // 'occupation' => 'sometimes|string|max:255',
+            // 'companyName' => 'sometimes|string|max:255',
+            // 'companyAddress' => 'sometimes|string|max:255',
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ], [
@@ -66,14 +66,14 @@ class RegisteredUserController extends Controller
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'fullName' => $request->fullName,
-            'homeAddress' => $request->homeAddress,
             'phoneNumber' => $request->phoneNumber,
-            'occupation' => $request->occupation,
             'avatar' => $avatarPath ?? null,
-            'companyName' => $request->companyName,
             'companyAddress' => $request->companyAddress,
             'password' => Hash::make($request->password),
+            // 'fullName' => $request->fullName,
+            // 'homeAddress' => $request->homeAddress,
+            // 'occupation' => $request->occupation,
+            // 'companyName' => $request->companyName,
         ]);
 
          // Memberikan role "client" ke pengguna baru

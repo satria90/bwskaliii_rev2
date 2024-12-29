@@ -49,19 +49,19 @@
 
                     <!-- Email Address -->
                     <div class="mb-6 w-full">
-                        <x-input-label for="email" :value="__('Alamat Surel')" class="text-blue-500 text-xl mb-4"/>
-                        <x-text-input id="email" type="email" name="email" :value="old('email')" required autofocus class="w-full px-4 py-3 border border-gray-300 rounded-lg text-lg focus:outline-none focus:ring-2 focus:ring-gray-400" placeholder="Masukan Alamat Surel" />
+                        <x-input-label for="email" :value="__('Alamat Surel')" class="text-blue-500 text-lg mb-4"/>
+                        <x-text-input id="email" type="email" name="email" :value="old('email')" required autofocus class="w-full px-3 py-2 border border-gray-300 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-gray-400" placeholder="Masukan Alamat Surel" />
                         <x-input-error :messages="$errors->get('email')" class="mt-2" />
                     </div>
 
                     <!-- Password -->
                     <div class="mb-8 w-full">
-                        <x-input-label for="password" :value="__('Kata Sandi')" class="block text-gray-900 text-xl mb-4"/>
-                        <x-text-input id="password" type="password" name="password" required class="w-full px-4 py-3 border border-gray-300 rounded-lg text-lg focus:outline-none focus:ring-2 focus:ring-gray-400" placeholder="Masukan Kata Sandi"/>
+                        <x-input-label for="password" :value="__('Kata Sandi')" class="block text-gray-900 text-lg mb-4"/>
+                        <x-text-input id="password" type="password" name="password" required class="w-full px-3 py-2 border border-gray-300 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-gray-400" placeholder="Masukan Kata Sandi"/>
                         <x-input-error :messages="$errors->get('password')" class="mt-2" />
                     </div>
 
-                    <button type="submit" class="w-full bg-black text-white font-semibold py-3 rounded-lg text-lg hover:bg-gray-800 transition duration-500">
+                    <button type="submit" class="w-full bg-black text-white font-semibold py-1 rounded-lg text-lg hover:bg-gray-800 transition duration-500">
                         {{ __('Masuk') }}
                     </button>
 
@@ -101,6 +101,7 @@
                     <div class="swiper-button-prev text-gray-500 hover:text-gray-600"></div>
                 </div>
             </div>
+
         </div>
     </div>
 

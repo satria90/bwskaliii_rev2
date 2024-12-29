@@ -171,13 +171,6 @@
                         <div>
                             <div class="text-2xl font-semibold mb-1">{{ $totalRequests }}</div>
                             <div class="text-sm font-medium text-gray-400">Jumlah Survey</div>
-                            <!-- Tombol Download Survey -->
-                            <form action="{{ route('survey.export-excel') }}" method="GET">
-                                @csrf
-                                <button type="submit" class="bg-green-500 p-2 mt-4 rounded-lg hover:bg-green-300 text-sm">
-                                    Download Survey
-                                </button>
-                            </form>
                         </div>                     
                         <div class="ri-folders-line text-5xl text-blue-800 "></div>
                     </div>
@@ -189,7 +182,14 @@
         <div class="px-6 py-2">
             <div class="bg-white rounded-md border border-gray-100 shadow-black/5 p-6">
                 <div class="p-6">
-                    <h1 class="font-medium mb-6">Hasil Survey</h1>
+                    <h1 class="font-medium mb-2 ">Hasil Survey</h1>
+                    <!-- Tombol Download Survey -->
+                    <form action="{{ route('survey.export-excel') }}" method="GET">
+                        @csrf
+                        <button type="submit" class="bg-green-500 p-2 mb-4 rounded-lg hover:bg-green-300 text-sm">
+                            Download Survey
+                        </button>
+                    </form>
                     <div class="space-y-4">
                         @foreach($questionsData as $questionKey => $questionData)
                             <p class="font-poppins text-gray-600">{{ $questionData['text'] }}</p>
