@@ -83,7 +83,7 @@
                         <h1 class="text-2xl font-bold mb-6">Pengajuan Permohonan dan Informasi</h1>
                         <p class="mb-3 text-lg font-semibold text-gray-500 after:content-['*'] after:ml-0.5 after:text-red-500">Silahkan Pilih Permohonan dan Informasi</p>
         
-                        <div class="mb-3">
+                        {{-- <div class="mb-3">
                             <button
                                 type="button"
                                 class="w-full flex justify-between items-center bg-gray-100 px-4 py-2 text-left rounded-md shadow focus:outline-none focus:ring focus:ring-blue-300"
@@ -142,7 +142,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
 
 
                         <!-- Dropdown 3 -->
@@ -153,10 +153,14 @@
                                 <i id="icon-dropdown1" class="ri-arrow-down-s-line text-slate-700 transition-transform"></i>
                             </button>
                             <div id="dropdown3" class="dropdown-content mt-4">
+
                                 <label for="fileDataSda" class="block mb-2 text-sm font-poppins text-slate-700">
                                     Upload surat permohonan
                                 </label>
-                                <input type="file" id="fileDataSda" name="fileDataSda" class="block w-full mb-4 border border-gray-300 rounded-md p-2 text-sm text-slate-700">
+                                <a href="{{ Storage::url($dataRequest->fileDataSda) }}" target="_blank" class="text-blue-500 hover:underline">
+                                    Lihat File
+                                </a>
+                                
                                 <label class="block mb-3">
                                     <span class="mb-2 block text-sm font-poppins text-slate-700">Jenis Permohonan data atau Informasi yang Dibutuhkan</span>
                                 </label>
@@ -204,7 +208,7 @@
                             </div>
                         </div>
 
-                            <!-- Dropdown 4 -->
+                            {{-- <!-- Dropdown 4 -->
                             <div class="mb-3">
                                 <button type="button" class="w-full flex justify-between items-center bg-gray-100 px-4 py-2 text-left rounded-md shadow focus:outline-none focus:ring focus:ring-blue-300" onclick="toggleCollapse('dropdown4')">
                                     <span class="font-bold text-slate-700">Permohonan Peminjaman Sarana Prasarana BWS Kalimantan III Banjarmasin</span>
@@ -251,7 +255,7 @@
                                     </label>
                                     <textarea value="{{ $dataRequest->Information }}" disabled id="Information" name="Information" rows="4" class="block w-full border border-gray-300 rounded-md p-2 text-sm text-slate-700"></textarea>
                                 </div>
-                            </div>
+                            </div> --}}
         
                             <label class="block mb-6">
                                 <span class="mb-2 after:content-['*'] after:ml-0.5 after:text-red-500 block text-lg font-poppins text-gray-500 font-semibold">

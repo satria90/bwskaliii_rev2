@@ -154,13 +154,19 @@
                                 <i id="icon-dropdown1" class="ri-arrow-down-s-line text-slate-700 transition-transform"></i>
                             </button>
                             <div id="dropdown3" class="dropdown-content mt-4">
+                               
                                 <label for="fileDataSda" class="block mb-2 text-sm font-poppins text-slate-700">
                                     Upload surat permohonan
                                 </label>
+                                <a href="{{ Storage::url($dataRequest->fileDataSda) }}" target="_blank" class="text-blue-500 hover:underline">
+                                    Lihat File
+                                </a>
                                 <input type="file" id="fileDataSda" name="fileDataSda" class="block w-full mb-4 border border-gray-300 rounded-md p-2 text-sm text-slate-700">
+                                
                                 <label class="block mb-3">
                                     <span class="mb-2 block text-sm font-poppins text-slate-700">Jenis Permohonan data atau Informasi yang Dibutuhkan</span>
                                 </label>
+                               
                                 <div class="flex flex-wrap gap-4">
                                     <!-- Kolom 1 -->
                                     <div class="space-y-2 w-1/2">
@@ -168,14 +174,17 @@
                                             <input {{ $dataRequest->RainFall == 1 ? 'checked' : '' }} type="checkbox" id="RainFall" name="RainFall" value="1" class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
                                             <label for="RainFall" class="ml-2 font-poppins text-sm text-slate-700">Curah Hujan</label>
                                         </div>
+                                        
                                         <div class="flex items-center">
                                             <input {{ $dataRequest->WaterHeight == 1 ? 'checked' : '' }} type="checkbox" id="WaterHeight" name="WaterHeight" value="1" class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
                                             <label for="WaterHeight" class="ml-2 font-poppins text-sm text-slate-700">Tinggi Muka Air</label>
                                         </div>
+                                        
                                         <div class="flex items-center">
                                             <input {{ $dataRequest->Climatology == 1 ? 'checked' : '' }} type="checkbox" id="Climatology" name="Climatology" value="1" class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
                                             <label for="Climatology" class="ml-2 font-poppins text-sm text-slate-700">Klimatologi</label>
                                         </div>
+                                        
                                         <div class="flex items-center">
                                             <input {{ $dataRequest->WaterQuality == 1 ? 'checked' : '' }} type="checkbox" id="WaterQuality" name="WaterQuality" value="1" class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
                                             <label for="WaterQuality" class="ml-2 font-poppins text-sm text-slate-700">Kualitas Air</label>
@@ -188,14 +197,17 @@
                                             <input {{ $dataRequest->WaterBalance == 1 ? 'checked' : '' }} type="checkbox" id="WaterBalance" name="WaterBalance" value="1" class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
                                             <label for="WaterBalance" class="ml-2 font-poppins text-sm text-slate-700">Neraca Air</label>
                                         </div>
+                                        
                                         <div class="flex items-center">
                                             <input {{ $dataRequest->RiverNetwork == 1 ? 'checked' : '' }} type="checkbox" id="RiverNetwork" name="RiverNetwork" value="1" class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
                                             <label for="RiverNetwork" class="ml-2 font-poppins text-sm text-slate-700">Peta Jaringan Sungai</label>
                                         </div>
+                                        
                                         <div class="flex items-center">
                                             <input {{ $dataRequest->WaterDischarge == 1 ? 'checked' : '' }} type="checkbox" id="WaterDischarge" name="WaterDischarge" value="1" class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
                                             <label for="WaterDischarge" class="ml-2 font-poppins text-sm text-slate-700">Debit Sesaat</label>
                                         </div>
+                                        
                                         <div class="flex items-center">
                                             <input {{ $dataRequest->WatershedMap == 1 ? 'checked' : '' }} type="checkbox" id="WatershedMap" name="WatershedMap" value="1" class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
                                             <label for="WatershedMap" class="ml-2 font-poppins text-sm text-slate-700">Peta DAS dan Sub DAS</label>
