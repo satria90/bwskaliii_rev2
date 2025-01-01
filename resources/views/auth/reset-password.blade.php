@@ -20,8 +20,8 @@
                 <div class="flex flex-col items-center mb-5">
                     <!-- Logo -->
                     <img src="{{ asset('assets\logo/logo lama.png') }}" alt="Logo PUPR" class="h-24 mb-3" />
-                    <h2 class="text-3xl font-medium text-gray-700 ">Lupa Password</h2>
-                    <p class="text-gray-500 text-lg">Masukkan email Anda untuk menerima tautan reset password</p>
+                    <h2 class="text-3xl font-medium text-gray-700 ">Atur Ulang Kata Sandi</h2>
+                    <p class="text-gray-500 text-lg"></p>
                 </div>
 
                 <!-- Notification Alert for Errors -->
@@ -37,25 +37,41 @@
                     </div>
                 @endif
 
-                <form method="POST" action="{{ route('password.email') }}">
+                <form method="POST" action="{{ route('password.store') }}">
                     @csrf
-
+            
+                    <!-- Password Reset Token -->
+                    <input type="hidden" name="token" value="{{ $request->route('token') }}">
+            
                     <!-- Email Address -->
-                    <div class="mb-6 w-full">
-                        <x-input-label for="email" :value="__('Email')" class="block text-gray-900 text-xl mb-4"/>
-                        <x-text-input id="email" type="email" name="email" :value="old('email')" required autofocus class="w-full px-4 py-3 border border-gray-300 rounded-lg text-lg focus:outline-none focus:ring-2 focus:ring-gray-400" placeholder="Masukkan Email Anda" />
+                    <div>
+                        <x-input-label for="email" :value="__('Alamat Surel')" />
+                        <x-text-input id="email" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-gray-400" type="email" name="email" :value="old('email', $request->email)" required autofocus autocomplete="username" />
                         <x-input-error :messages="$errors->get('email')" class="mt-2" />
                     </div>
-
-                    <button type="submit" class="w-full bg-black text-white font-semibold py-3 rounded-lg text-lg hover:bg-gray-800 transition duration-500">
-                        {{ __('Kirim Tautan Reset Password') }}
-                    </button>
-
-                    <!-- Back to Login Link -->
-                    <div class="text-center mt-4">
-                        <a href="{{ route('login') }}" class="text-gray-600 hover:text-gray-800 text-sm">
-                            {{ __('Kembali ke Login') }}
-                        </a>
+            
+                    <!-- Password -->
+                    <div class="mt-4">
+                        <x-input-label for="password" :value="__('Kata Sandi')" />
+                        <x-text-input id="password" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-gray-400" type="password" name="password" required autocomplete="new-password" />
+                        <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                    </div>
+            
+                    <!-- Confirm Password -->
+                    <div class="mt-4">
+                        <x-input-label for="password_confirmation" :value="__('Konfirmasi Kata sandi')" />
+            
+                        <x-text-input id="password_confirmation" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-gray-400"
+                                            type="password"
+                                            name="password_confirmation" required autocomplete="new-password" />
+            
+                        <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+                    </div>
+            
+                    <div class="flex items-center justify-end mt-4">
+                        <x-primary-button>
+                            {{ __('Atur Ulang kata Sandi') }}
+                        </x-primary-button>
                     </div>
                 </form>
             </div>

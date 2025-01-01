@@ -168,7 +168,7 @@
                                 <label for="fileDataSda" class="block mb-2 text-sm font-poppins text-slate-700">
                                     Upload surat permohonan
                                 </label>
-                                <input type="file" id="fileDataSda" name="fileDataSda" class="block w-full mb-4 border border-gray-300 rounded-md p-2 text-sm text-slate-700">
+                                <input type="file" id="fileDataSda" name="fileDataSda" class="block w-full mb-4 border border-gray-300 rounded-md p-2 text-sm text-slate-700" required>
                                 <label class="block mb-3">
                                     <span class="mb-2 block text-sm font-poppins text-slate-700">Jenis Permohonan data atau Informasi yang Dibutuhkan</span>
                                 </label>

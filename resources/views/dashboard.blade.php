@@ -170,7 +170,7 @@
                     <div class="flex justify-between">
                         <div>
                             <div class="text-2xl font-semibold mb-1">{{ $totalRequests }}</div>
-                            <div class="text-sm font-medium text-gray-400">Jumlah Survey</div>
+                            <div class="text-sm font-medium text-gray-400">Jumlah Permohonan</div>
                         </div>                     
                         <div class="ri-folders-line text-5xl text-blue-800 "></div>
                     </div>

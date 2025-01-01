@@ -295,7 +295,7 @@
                             <span class="mb-2 after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-poppins text-slate-700">
                               Upload File Diminta
                             </span>
-                            <input type="file" required id="fileDataRequest" name="fileDataRequest" class="mt-1 px-3 py-2 bg-gray-100 border shadow-sm border-slate-200 placeholder-gray-400 focus:outline-none focus:border-gray-300 focus:ring-gray-300 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Upload file Diminta" />
+                            <input type="file" sometimes id="fileDataRequest" name="fileDataRequest" class="mt-1 px-3 py-2 bg-gray-100 border shadow-sm border-slate-200 placeholder-gray-400 focus:outline-none focus:border-gray-300 focus:ring-gray-300 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Upload file Diminta" />
                         </label>
 
                         <div class="flex flex-col space-y-4 mb-8">

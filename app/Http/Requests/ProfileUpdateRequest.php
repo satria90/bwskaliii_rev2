@@ -26,7 +26,7 @@ class ProfileUpdateRequest extends FormRequest
                 Rule::unique(User::class)->ignore($this->user()->id),
             ],
             'avatar'=>['sometimes','image','mimes:png,jpg,jpeg'],
-            // 'phoneNumber' => 'required|string|max:15',
+            'phoneNumber' => 'required|string|max:15',
             // 'fullName' => 'required|string|max:255',
             // 'homeAddress' => 'required|string|max:255',
             // 'occupation' => 'required|string|max:255',
