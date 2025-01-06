@@ -36,46 +36,46 @@ class ApprovalController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(StoreApprovalRequest $request)
-{
-    $user = Auth::user();
-    
-    DB::transaction(function () use($request, $user) {
-        $validated = $request->validated();
+    {
+        $user = Auth::user();
+        
+        DB::transaction(function () use($request, $user) {
+            $validated = $request->validated();
 
-        // cek admin approval
-        if ($request->hasFile('adminApproval')) {
-            $adminApprovalPath = $request->file('adminApproval')->store('admin-approval', 'public');
-            $validated['adminApproval'] = $adminApprovalPath;
-        }
-
-        // Cek apakah file proof diunggah
-        if ($request->hasFile('proof')) {
-            $proofPath = $request->file('proof')->store('proof', 'public');
-            $validated['proof'] = $proofPath;
-        }
-
-        $validated['user_id'] = $user->id;
-        $validated['upload'] = false;
-
-        // Cari data berdasarkan user_id
-        $approval = Approval::where('user_id', $user->id)->first();
-
-        if ($approval) {
-            // Jika data sudah ada, ubah status aktif menjadi tidak aktif sebelum memperbarui
-            if ($approval->status == 'aktif') {
-                $approval->update(['status' => 'tidak aktif']);
+            // cek admin approval
+            if ($request->hasFile('adminApproval')) {
+                $adminApprovalPath = $request->file('adminApproval')->store('admin-approval', 'public');
+                $validated['adminApproval'] = $adminApprovalPath;
             }
 
-            // Update data yang sudah ada
-            $approval->update($validated);
-        } else {
-            // Tambah data baru jika belum ada
-            Approval::create($validated);
-        }
-    });
+            // Cek apakah file proof diunggah
+            if ($request->hasFile('proof')) {
+                $proofPath = $request->file('proof')->store('proof', 'public');
+                $validated['proof'] = $proofPath;
+            }
 
-    return redirect()->route('profile.edit')->with('success', 'Status approval berhasil diperbarui.');
-}
+            $validated['user_id'] = $user->id;
+            $validated['upload'] = false;
+
+            // Cari data berdasarkan user_id
+            $approval = Approval::where('user_id', $user->id)->first();
+
+            if ($approval) {
+                // Jika data sudah ada, ubah status aktif menjadi tidak aktif sebelum memperbarui
+                if ($approval->status == 'aktif') {
+                    $approval->update(['status' => 'tidak aktif']);
+                }
+
+                // Update data yang sudah ada
+                $approval->update($validated);
+            } else {
+                // Tambah data baru jika belum ada
+                Approval::create($validated);
+            }
+        });
+
+        return redirect()->route('profile.edit')->with('success', 'Status approval berhasil diperbarui.');
+    }
 
     
 

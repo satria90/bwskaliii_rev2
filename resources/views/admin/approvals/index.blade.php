@@ -36,18 +36,22 @@
                     <span>Permohonan</span>
                 </a>
             </li>
+            @role('admin|owner')
             <li class="font-poppins mb-1 group active">
-                <a href="#" class="flex items-center px-2 py-2 text-gray-400 hover:bg-gray-300 hover:text-blue-800 rounded-full group-[.active]:bg-gray-300 group-[.active]:text-blue-900 ">
+                <a href="{{ route('admin.approvals.index') }}" class="flex items-center px-2 py-2 text-gray-400 hover:bg-gray-300 hover:text-blue-800 rounded-full group-[.active]:bg-gray-300 group-[.active]:text-blue-900">
                     <i class="ri-team-line mr-3 text-lg"></i>
                     <span>Manajemen Akun</span>
                 </a>
             </li>
+            @endrole
+            @role('owner')
             <li class="font-poppins mb-1 group">
                 <a href="{{ route('admin.admins.index') }}" class="flex items-center px-2 py-2 text-gray-400 hover:bg-gray-300 hover:text-blue-800 rounded-full group-[.active]:text-gray-300 ">
                     <i class="ri-group-line mr-3 text-lg"></i>
                     <span>Manajemen Admin</span>
                 </a>
             </li>
+            @endrole
         </ul>
      </div>
      <div class="fixed top-0 left-0 w-full h-full bg-black/50 z-40 md:hidden sidebar-overlay"></div>

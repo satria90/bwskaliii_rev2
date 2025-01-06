@@ -91,21 +91,21 @@
         @include('components.navigator')
 
         <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-            <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow-xl rounded-lg">
-                <div class="max-w-xl">
+        <div class="px-6 py-2">
+            <div class="bg-white rounded-md border border-gray-100 shadow-black/5 p-6 mb-6">
+                <div class="p-6">
                     @include('profile.partials.update-profile-information-form')
                 </div>
             </div>
 
-            <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow-xl rounded-lg">
-                <div class="max-w-xl">
+            <div class="bg-white rounded-md border border-gray-100 shadow-black/5 p-6">
+                <div class="p-6">
                     @include('profile.partials.update-id-information-form')
                 </div>
             </div>
 
-            <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow-xl rounded-lg">
-                <div class="max-w-xl">
+            <div class="bg-white rounded-md border border-gray-100 shadow-black/5 p-6 mt-6">
+                <div class="p-6">
                     @include('profile.partials.update-password-form')
                 </div>
             </div>

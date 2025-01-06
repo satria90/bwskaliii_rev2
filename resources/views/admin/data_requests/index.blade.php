@@ -144,9 +144,6 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="pagination mt-4">
-                    {{ $dataRequest->appends(request()->query())->links('vendor.pagination.custom-tailwind') }}
-                </div>
             </div>
         </div>
     </main>

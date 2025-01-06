@@ -16,15 +16,16 @@ class DataRequestController extends Controller
     {
         $user = Auth::user();
         $query = DataRequest::orderByDesc('id');
-    
+
         if ($user->hasRole('client')) {
             $query->where('user_id', $user->id);
         }
-    
-        $dataRequest = $query->paginate(2);
-    
+
+        $dataRequest = $query->paginate();
+
         return view('admin.data_requests.index', compact('dataRequest'));
-        
+
+
     }
 
     public function create()
